@@ -1,0 +1,6 @@
+# Python Virtual Environment
+venv/
+__pycache__/
+
+# JSON files are too large, compress them instead
+/json/*.json
