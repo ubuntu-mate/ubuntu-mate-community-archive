@@ -7,3 +7,6 @@ __pycache__/
 
 # Directory structure too long, compress instead
 /uploads/
+
+# Output
+/dist/
