@@ -117,3 +117,41 @@ document.querySelectorAll("script.poll-data").forEach(script => {
         box.classList.toggle("visible", !entry.isIntersecting);
     }, { rootMargin: `-${Math.round(headerHeight)}px 0px 0px 0px` }).observe(title);
 })();
+
+// Header search toggle functionality
+(() => {
+    const search = document.querySelector(".header-search");
+    const toggle = search?.querySelector(".header-search-toggle");
+    const form = search?.querySelector(".header-search-panel");
+    const input = search?.querySelector("input[type=search]");
+    if (!search || !toggle || !form || !input)
+        return;
+
+    const setOpen = open => {
+        form.hidden = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close search" : "Open search");
+        if (open)
+            input.focus();
+    };
+
+    toggle.addEventListener("click", () => setOpen(form.hidden));
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        const query = input.value.trim();
+        if (!query)
+            return;
+        const params = new URLSearchParams({ q: `site:https://ubuntu-mate.community ${query}` });
+        window.location.href = `https://duckduckgo.com/?${params}`;
+    });
+    document.addEventListener("click", event => {
+        if (!search.contains(event.target))
+            setOpen(false);
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !form.hidden) {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+})();
