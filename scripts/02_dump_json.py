@@ -482,6 +482,10 @@ class DiscourseExporter:
                 self._scrub_avatar_references(post.get("raw"))
             )
 
+            # Removing avatars may result in empty src tags for quotes
+            if post.get("cooked"):
+                post["cooked"] = re.sub(r'<img alt="" width="24" height="24" src="" class="avatar">', '', post["cooked"])
+
             is_action = post["post_type"] == SMALL_ACTION_POST_TYPE and bool(post.get("action_code"))
             has_content = bool((post.get("raw") or "").strip()) or bool((post.get("cooked") or "").strip())
             if not has_content and not is_action:
