@@ -90,9 +90,9 @@ document.querySelectorAll("script.poll-data").forEach(script => {
     });
 });
 
-// Show topic title and category in the site header once the page title scrolls out of view.
+// Show topic title (and category) or profile username in the site header once the page heading scrolls out of view.
 (() => {
-    const title = document.querySelector("article.topic > h1");
+    const title = document.querySelector("article.topic > h1, h1.profile-username");
     const headerContainer = document.querySelector(".site-header > .container");
     if (!title || !headerContainer)
         return;
@@ -101,7 +101,7 @@ document.querySelectorAll("script.poll-data").forEach(script => {
     box.className = "header-topic";
     const name = document.createElement("div");
     name.className = "header-topic-title";
-    name.textContent = title.textContent;
+    name.textContent = title.textContent.trim();
 
     box.appendChild(name);
 
