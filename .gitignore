@@ -2,11 +2,5 @@
 venv/
 __pycache__/
 
-# JSON files are too large, compress instead
-/json/*.json
-
-# Directory structure too long, compress instead
-/uploads/
-
 # Output
 /dist/

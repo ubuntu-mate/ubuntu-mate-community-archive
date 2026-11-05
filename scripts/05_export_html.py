@@ -198,8 +198,21 @@ def make_jinja_env():
 
 
 def load_json(name):
-    with open(JSON_DIR / name, encoding="utf-8") as f:
-        return json.load(f)
+    path = JSON_DIR / name
+    parts = [(int(part.stem.removeprefix(path.stem + ".")), part)
+             for part in JSON_DIR.glob(f"{path.stem}.*.json")
+             if part.stem.removeprefix(path.stem + ".").isdigit()]
+    if not parts:
+        with path.open(encoding="utf-8") as f:
+            return json.load(f)
+    parts.sort()
+    if [number for number, _ in parts] != list(range(1, len(parts) + 1)):
+        raise ValueError(f"Missing or duplicate numbered parts for {name}")
+    data = []
+    for _, part in parts:
+        with part.open(encoding="utf-8") as f:
+            data.extend(json.load(f))
+    return data
 
 
 def write_output(path, html):

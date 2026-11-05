@@ -25,10 +25,12 @@ DB_HOST = "localhost"
 DB_PORT = 5432
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "json"
+MAX_JSON_BYTES = 50 * 1024 * 1024 - 1
 SITE_URL = "https://ubuntu-mate.community"
 
 # Categories to omit entirely from the archive (e.g. staff/multilingual).
 EXCLUDED_CATEGORY_IDS = [43, 3, 4, 48, 46, 37, 33, 34, 35, 36]
+PRESERVED_TOPIC_IDS = {4, 5, 6, 8}
 
 # Discourse post_type values.
 SMALL_ACTION_POST_TYPE = 3
@@ -143,9 +145,35 @@ class DiscourseExporter:
 
     def _write_json(self, filename, data):
         path = OUTPUT_DIR / filename
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"  Wrote {path} ({len(data):,} records)")
+        parts = []
+        records = []
+        size = 4
+
+        def write_part():
+            part = OUTPUT_DIR / f"{path.stem}.{len(parts) + 1}.json"
+            part.write_bytes(b"[\n" + b",\n".join(records) + b"\n]")
+            parts.append(part)
+
+        for record in data:
+            text = json.dumps(record, indent=2, ensure_ascii=False)
+            encoded = ("  " + text.replace("\n", "\n  ")).encode("utf-8")
+            if len(encoded) + 4 > MAX_JSON_BYTES:
+                raise ValueError(f"A record in {filename} exceeds the JSON size limit")
+            if records and size + 2 + len(encoded) > MAX_JSON_BYTES:
+                write_part()
+                records = []
+                size = 4
+            size += len(encoded) + (2 if records else 0)
+            records.append(encoded)
+        write_part()
+
+        if len(parts) == 1:
+            parts[0].replace(path)
+            parts = [path]
+        for old in [path, *OUTPUT_DIR.glob(f"{path.stem}.*.json")]:
+            if old not in parts and (old == path or old.stem.removeprefix(path.stem + ".").isdigit()):
+                old.unlink(missing_ok=True)
+        print(f"  Wrote {len(parts)} file(s) for {filename} ({len(data):,} records)")
 
     def _load_scrubbed_usernames(self):
         """Load usernames of users who did not opt in to full profile preservation."""
@@ -236,7 +264,7 @@ class DiscourseExporter:
             LEFT JOIN uploads profile_bg_upload ON up.profile_background_upload_id = profile_bg_upload.id
             LEFT JOIN uploads card_bg_upload ON up.card_background_upload_id = card_bg_upload.id
             LEFT JOIN user_custom_fields ucf ON u.id = ucf.user_id AND ucf.name = 'user_field_3'
-            WHERE u.id > 0
+            WHERE u.id > 0 OR u.id = -1
             ORDER BY u.id
         """)
 
@@ -259,6 +287,9 @@ class DiscourseExporter:
     @staticmethod
     def _scrub_profile(user):
         """Strip profile data unless the user opted in to preserve their full profile."""
+        if user["id"] == -1:
+            return
+
         preference = (user.get("preservation_preference") or "").lower()
 
         if "full profile" in preference:
@@ -390,7 +421,7 @@ class DiscourseExporter:
 
             if topic.get("unlisted") or topic.get("archetype") == "private_message":
                 continue
-            if topic.get("category_id") in EXCLUDED_CATEGORY_IDS:
+            if topic.get("category_id") in EXCLUDED_CATEGORY_IDS and topic["id"] not in PRESERVED_TOPIC_IDS:
                 continue
 
             for field in ["created_at", "updated_at", "last_posted_at", "pinned_at"]:

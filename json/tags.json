@@ -1,0 +1,1466 @@
+[
+  {
+    "id": 30,
+    "name": "software",
+    "slug": "software",
+    "public_topic_count": 878,
+    "created_at": "2016-07-12T10:45:45.570155",
+    "updated_at": "2016-07-12T10:45:45.570155",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 116,
+    "name": "20-04-focal-LTS",
+    "slug": "20-04-focal-lts",
+    "public_topic_count": 762,
+    "created_at": "2019-09-27T11:33:29.787085",
+    "updated_at": "2020-05-09T11:13:40.481567",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "system",
+    "slug": "system",
+    "public_topic_count": 730,
+    "created_at": "2016-07-12T10:45:45.556509",
+    "updated_at": "2016-07-12T10:45:45.556509",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "desktop",
+    "slug": "desktop",
+    "public_topic_count": 596,
+    "created_at": "2016-07-12T10:45:45.607957",
+    "updated_at": "2016-07-12T10:45:45.607957",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "installation",
+    "slug": "installation",
+    "public_topic_count": 593,
+    "created_at": "2016-07-12T10:45:45.589742",
+    "updated_at": "2016-07-12T10:45:45.589742",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "networking",
+    "slug": "networking",
+    "public_topic_count": 329,
+    "created_at": "2016-07-12T10:45:45.485018",
+    "updated_at": "2016-07-12T10:45:45.485018",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 145,
+    "name": "22-04-jammy-LTS",
+    "slug": "22-04-jammy-lts",
+    "public_topic_count": 325,
+    "created_at": "2021-11-11T09:13:48.900888",
+    "updated_at": "2024-04-26T15:05:54.975363",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "panel",
+    "slug": "panel",
+    "public_topic_count": 283,
+    "created_at": "2016-07-12T10:45:45.522835",
+    "updated_at": "2016-07-12T10:45:45.522835",
+    "group_names": [
+      "Customisation"
+    ]
+  },
+  {
+    "id": 150,
+    "name": "24-04-noble-LTS",
+    "slug": "24-04-noble-lts",
+    "public_topic_count": 277,
+    "created_at": "2024-04-26T15:02:34.207166",
+    "updated_at": "2024-04-26T15:02:34.207166",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "18-04-bionic-LTS",
+    "slug": "18-04-bionic-lts",
+    "public_topic_count": 260,
+    "created_at": "2018-11-11T16:06:55.662201",
+    "updated_at": "2020-05-09T11:13:28.701083",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "video",
+    "slug": "video",
+    "public_topic_count": 232,
+    "created_at": "2016-07-12T10:45:45.479725",
+    "updated_at": "2016-07-12T10:45:45.479725",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Intel",
+    "slug": "intel",
+    "public_topic_count": 213,
+    "created_at": "2019-03-21T18:07:57.980757",
+    "updated_at": "2019-03-22T12:54:19.381266",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "themes",
+    "slug": "themes",
+    "public_topic_count": 196,
+    "created_at": "2016-07-12T10:45:45.477978",
+    "updated_at": "2016-07-12T10:45:45.477978",
+    "group_names": [
+      "Customisation"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "caja",
+    "slug": "caja",
+    "public_topic_count": 193,
+    "created_at": "2016-07-12T10:45:45.586924",
+    "updated_at": "2016-07-12T10:45:45.586924",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "19-10-eoan",
+    "slug": "19-10-eoan",
+    "public_topic_count": 140,
+    "created_at": "2019-04-21T19:28:47.988804",
+    "updated_at": "2019-04-21T19:28:47.988804",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "audio",
+    "slug": "audio",
+    "public_topic_count": 130,
+    "created_at": "2016-07-12T10:45:45.548792",
+    "updated_at": "2016-07-12T10:45:45.548792",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "bugs",
+    "slug": "bugs",
+    "public_topic_count": 130,
+    "created_at": "2016-07-12T10:45:45.501927",
+    "updated_at": "2016-07-12T10:45:45.501927",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Lenovo",
+    "slug": "lenovo",
+    "public_topic_count": 112,
+    "created_at": "2019-03-21T18:25:09.745596",
+    "updated_at": "2019-03-22T12:54:30.834834",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "security",
+    "slug": "security",
+    "public_topic_count": 112,
+    "created_at": "2016-07-12T10:45:45.632116",
+    "updated_at": "2016-07-12T10:45:45.632116",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Dell",
+    "slug": "dell",
+    "public_topic_count": 102,
+    "created_at": "2019-03-21T18:25:09.761608",
+    "updated_at": "2019-03-22T12:54:08.529215",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "HP",
+    "slug": "hp",
+    "public_topic_count": 101,
+    "created_at": "2019-03-21T18:25:09.755893",
+    "updated_at": "2019-03-22T12:53:24.487166",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "NVIDIA",
+    "slug": "nvidia",
+    "public_topic_count": 99,
+    "created_at": "2016-07-12T10:45:45.625120",
+    "updated_at": "2019-03-22T12:55:18.359641",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "boutique",
+    "slug": "boutique",
+    "public_topic_count": 99,
+    "created_at": "2016-07-12T10:45:45.533716",
+    "updated_at": "2016-07-12T10:45:45.533716",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "drivers",
+    "slug": "drivers",
+    "public_topic_count": 94,
+    "created_at": "2016-07-12T10:45:45.600799",
+    "updated_at": "2016-07-12T10:45:45.600799",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "updates",
+    "slug": "updates",
+    "public_topic_count": 92,
+    "created_at": "2016-07-12T10:45:45.486778",
+    "updated_at": "2016-07-12T10:45:45.486778",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "printing",
+    "slug": "printing",
+    "public_topic_count": 91,
+    "created_at": "2016-07-12T10:45:45.580304",
+    "updated_at": "2016-07-12T10:45:45.580304",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "gaming",
+    "slug": "gaming",
+    "public_topic_count": 91,
+    "created_at": "2016-07-12T10:45:45.529647",
+    "updated_at": "2016-07-12T10:45:45.529647",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "16-04-xenial-LTS",
+    "slug": "16-04-xenial-lts",
+    "public_topic_count": 88,
+    "created_at": "2018-11-11T16:06:04.916273",
+    "updated_at": "2020-05-09T11:13:16.581496",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 130,
+    "name": "powerpc",
+    "slug": "powerpc",
+    "public_topic_count": 87,
+    "created_at": "2020-05-09T11:17:25.267363",
+    "updated_at": "2020-05-09T11:17:25.267363",
+    "group_names": [
+      "Architectures"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "compiz",
+    "slug": "compiz",
+    "public_topic_count": 86,
+    "created_at": "2016-07-12T10:45:45.553337",
+    "updated_at": "2016-07-12T10:45:45.553337",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 1,
+    "name": "kernel",
+    "slug": "kernel",
+    "public_topic_count": 83,
+    "created_at": "2016-07-12T10:45:45.470415",
+    "updated_at": "2016-07-12T10:45:45.470415",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "wireless",
+    "slug": "wireless",
+    "public_topic_count": 81,
+    "created_at": "2016-07-12T10:45:45.560644",
+    "updated_at": "2016-07-12T10:45:45.560644",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "laptop",
+    "slug": "laptop",
+    "public_topic_count": 81,
+    "created_at": "2016-07-12T10:45:45.517177",
+    "updated_at": "2016-07-12T10:45:45.517177",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "internet",
+    "slug": "internet",
+    "public_topic_count": 80,
+    "created_at": "2016-07-12T10:45:45.611952",
+    "updated_at": "2016-07-12T10:45:45.611952",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "bluetooth",
+    "slug": "bluetooth",
+    "public_topic_count": 79,
+    "created_at": "2016-07-12T10:45:45.508578",
+    "updated_at": "2016-07-12T10:45:45.508578",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "terminal",
+    "slug": "terminal",
+    "public_topic_count": 77,
+    "created_at": "2016-07-12T10:45:45.576640",
+    "updated_at": "2016-07-12T10:45:45.576640",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "partitioning",
+    "slug": "partitioning",
+    "public_topic_count": 76,
+    "created_at": "2016-07-12T10:45:45.540581",
+    "updated_at": "2016-07-12T10:45:45.540581",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Asus",
+    "slug": "asus",
+    "public_topic_count": 70,
+    "created_at": "2019-03-21T18:25:09.766698",
+    "updated_at": "2019-03-22T12:53:57.441877",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "menu",
+    "slug": "menu",
+    "public_topic_count": 69,
+    "created_at": "2016-07-12T10:45:45.483257",
+    "updated_at": "2016-07-12T10:45:45.483257",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "17-10-artful",
+    "slug": "17-10-artful",
+    "public_topic_count": 62,
+    "created_at": "2018-11-11T16:01:27.470086",
+    "updated_at": "2018-11-11T16:01:27.470086",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 125,
+    "name": "20-10-groovy",
+    "slug": "20-10-groovy",
+    "public_topic_count": 58,
+    "created_at": "2020-05-09T11:14:56.685755",
+    "updated_at": "2020-05-09T11:14:56.685755",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "AMD",
+    "slug": "amd",
+    "public_topic_count": 58,
+    "created_at": "2016-07-12T10:45:45.537387",
+    "updated_at": "2019-03-22T12:52:40.457631",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "dualboot",
+    "slug": "dualboot",
+    "public_topic_count": 56,
+    "created_at": "2016-07-12T10:45:45.474462",
+    "updated_at": "2016-07-12T10:45:45.474462",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Acer",
+    "slug": "acer",
+    "public_topic_count": 54,
+    "created_at": "2019-03-21T18:25:09.721185",
+    "updated_at": "2019-03-22T12:53:37.983792",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 135,
+    "name": "21-04-hirsute",
+    "slug": "21-04-hirsute",
+    "public_topic_count": 53,
+    "created_at": "2020-12-01T16:48:03.989441",
+    "updated_at": "2020-12-01T16:48:03.989441",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "virtualization",
+    "slug": "virtualization",
+    "public_topic_count": 50,
+    "created_at": "2016-07-12T10:45:45.545345",
+    "updated_at": "2016-07-12T10:45:45.545345",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "apt",
+    "slug": "apt",
+    "public_topic_count": 49,
+    "created_at": "2016-07-12T10:45:45.619044",
+    "updated_at": "2016-07-12T10:45:45.619044",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 134,
+    "name": "upgrade",
+    "slug": "upgrade",
+    "public_topic_count": 49,
+    "created_at": "2020-10-24T03:09:47.398626",
+    "updated_at": "2020-10-24T03:09:47.398626",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "distrotalk",
+    "slug": "distrotalk",
+    "public_topic_count": 49,
+    "created_at": "2016-07-12T10:45:45.496349",
+    "updated_at": "2016-07-12T10:45:45.496349",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "wine",
+    "slug": "wine",
+    "public_topic_count": 45,
+    "created_at": "2016-08-20T13:35:45.462595",
+    "updated_at": "2016-08-20T13:35:45.462595",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "usb",
+    "slug": "usb",
+    "public_topic_count": 45,
+    "created_at": "2016-07-12T10:45:45.621653",
+    "updated_at": "2016-07-12T10:45:45.621653",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "16-10-yakkety",
+    "slug": "16-10-yakkety",
+    "public_topic_count": 45,
+    "created_at": "2018-11-11T16:00:25.482580",
+    "updated_at": "2018-11-11T16:00:25.482580",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "samba",
+    "slug": "samba",
+    "public_topic_count": 44,
+    "created_at": "2016-07-12T10:45:45.614997",
+    "updated_at": "2016-07-12T10:45:45.614997",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "17-04-zesty",
+    "slug": "17-04-zesty",
+    "public_topic_count": 41,
+    "created_at": "2018-11-11T15:58:50.143619",
+    "updated_at": "2018-11-11T15:58:50.143619",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "lightdm",
+    "slug": "lightdm",
+    "public_topic_count": 41,
+    "created_at": "2016-07-12T10:45:45.573858",
+    "updated_at": "2016-07-12T10:45:45.573858",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 142,
+    "name": "21-10-impish",
+    "slug": "21-10-impish",
+    "public_topic_count": 41,
+    "created_at": "2021-06-14T16:24:10.950905",
+    "updated_at": "2021-06-14T16:24:10.950905",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Samsung",
+    "slug": "samsung",
+    "public_topic_count": 39,
+    "created_at": "2019-03-21T18:25:09.777959",
+    "updated_at": "2019-03-22T12:55:26.756787",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "keyboard",
+    "slug": "keyboard",
+    "public_topic_count": 39,
+    "created_at": "2018-07-19T17:47:36.180860",
+    "updated_at": "2018-07-19T17:47:36.180860",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "snaps",
+    "slug": "snaps",
+    "public_topic_count": 38,
+    "created_at": "2017-06-30T14:04:54.670834",
+    "updated_at": "2017-06-30T14:04:54.670834",
+    "group_names": [
+      "Software",
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "language",
+    "slug": "language",
+    "public_topic_count": 37,
+    "created_at": "2016-07-12T10:45:45.597256",
+    "updated_at": "2016-07-12T10:45:45.597256",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "welcome-app",
+    "slug": "welcome-app",
+    "public_topic_count": 37,
+    "created_at": "2016-07-28T21:29:30.095198",
+    "updated_at": "2016-07-28T21:29:30.095198",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Apple",
+    "slug": "apple",
+    "public_topic_count": 33,
+    "created_at": "2016-07-12T10:45:45.472684",
+    "updated_at": "2019-03-22T12:53:49.114690",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 111,
+    "name": "slow-boot",
+    "slug": "slow-boot",
+    "public_topic_count": 32,
+    "created_at": "2019-07-08T18:29:15.081436",
+    "updated_at": "2019-07-08T18:29:15.081436",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 112,
+    "name": "grub",
+    "slug": "grub",
+    "public_topic_count": 30,
+    "created_at": "2019-07-08T21:45:51.965997",
+    "updated_at": "2019-07-08T21:45:51.965997",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "marco",
+    "slug": "marco",
+    "public_topic_count": 29,
+    "created_at": "2016-07-12T10:45:45.563519",
+    "updated_at": "2016-07-12T10:45:45.563519",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "DVD",
+    "slug": "dvd",
+    "public_topic_count": 29,
+    "created_at": "2016-07-12T10:45:45.505523",
+    "updated_at": "2019-03-22T12:56:13.205861",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "backup",
+    "slug": "backup",
+    "public_topic_count": 28,
+    "created_at": "2016-07-12T10:45:45.604738",
+    "updated_at": "2016-07-12T10:45:45.604738",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "remote",
+    "slug": "remote",
+    "public_topic_count": 28,
+    "created_at": "2016-07-12T10:45:45.583184",
+    "updated_at": "2016-07-12T10:45:45.583184",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 115,
+    "name": "GPD-Pocket",
+    "slug": "gpd-pocket",
+    "public_topic_count": 24,
+    "created_at": "2019-09-23T18:48:40.383921",
+    "updated_at": "2019-09-23T18:48:40.383921",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 148,
+    "name": "23-04-lunar",
+    "slug": "23-04-lunar",
+    "public_topic_count": 23,
+    "created_at": "2023-04-05T05:13:26.830223",
+    "updated_at": "2023-04-05T05:13:26.830223",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 157,
+    "name": "25-04-plucky",
+    "slug": "25-04-plucky",
+    "public_topic_count": 23,
+    "created_at": "2025-03-28T11:41:47.359817",
+    "updated_at": "2025-03-28T11:41:47.359817",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 149,
+    "name": "23-10-mantic",
+    "slug": "23-10-mantic",
+    "public_topic_count": 22,
+    "created_at": "2023-09-23T20:57:03.597278",
+    "updated_at": "2023-09-23T20:57:03.597278",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 154,
+    "name": "power-management",
+    "slug": "power-management",
+    "public_topic_count": 21,
+    "created_at": "2024-11-21T22:20:42.866580",
+    "updated_at": "2024-11-21T22:20:42.866580",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Brother",
+    "slug": "brother",
+    "public_topic_count": 21,
+    "created_at": "2019-03-22T13:00:39.365071",
+    "updated_at": "2019-03-22T13:00:39.365071",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 146,
+    "name": "raspberry-pi",
+    "slug": "raspberry-pi",
+    "public_topic_count": 21,
+    "created_at": "2022-07-06T12:52:25.489702",
+    "updated_at": "2022-07-06T12:52:25.489702",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "accessibility",
+    "slug": "accessibility",
+    "public_topic_count": 21,
+    "created_at": "2016-07-12T10:45:45.567300",
+    "updated_at": "2016-07-12T10:45:45.567300",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "tablet",
+    "slug": "tablet",
+    "public_topic_count": 20,
+    "created_at": "2016-08-25T07:17:13.760491",
+    "updated_at": "2016-08-25T07:17:13.760491",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 152,
+    "name": "24-10-oracular",
+    "slug": "24-10-oracular",
+    "public_topic_count": 20,
+    "created_at": "2024-10-10T11:40:02.161828",
+    "updated_at": "2024-10-10T11:40:02.161828",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "privacy",
+    "slug": "privacy",
+    "public_topic_count": 19,
+    "created_at": "2016-07-12T10:45:45.628392",
+    "updated_at": "2016-07-12T10:45:45.628392",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "compton",
+    "slug": "compton",
+    "public_topic_count": 19,
+    "created_at": "2016-07-12T10:45:45.593850",
+    "updated_at": "2016-07-12T10:45:45.593850",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 147,
+    "name": "22-10-kinetic",
+    "slug": "22-10-kinetic",
+    "public_topic_count": 19,
+    "created_at": "2022-10-24T05:50:43.141962",
+    "updated_at": "2022-10-24T05:50:43.141962",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 110,
+    "name": "users",
+    "slug": "users",
+    "public_topic_count": 18,
+    "created_at": "2019-04-27T17:14:16.241133",
+    "updated_at": "2019-04-27T17:14:16.241133",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "multimedia",
+    "slug": "multimedia",
+    "public_topic_count": 17,
+    "created_at": "2016-07-12T10:45:45.520685",
+    "updated_at": "2016-07-12T10:45:45.520685",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 119,
+    "name": "graphics",
+    "slug": "graphics",
+    "public_topic_count": 16,
+    "created_at": "2020-01-26T16:11:10.844807",
+    "updated_at": "2020-01-26T16:11:10.844807",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "scanner",
+    "slug": "scanner",
+    "public_topic_count": 16,
+    "created_at": "2017-08-12T12:00:38.056722",
+    "updated_at": "2017-08-12T12:00:38.056722",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "19-04-disco",
+    "slug": "19-04-disco",
+    "public_topic_count": 16,
+    "created_at": "2019-03-21T18:11:21.095913",
+    "updated_at": "2019-03-21T18:11:21.095913",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "mate-tweak",
+    "slug": "mate-tweak",
+    "public_topic_count": 15,
+    "created_at": "2017-07-19T20:34:01.277207",
+    "updated_at": "2019-03-21T18:46:59.342330",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 158,
+    "name": "25-10-questing",
+    "slug": "25-10-questing",
+    "public_topic_count": 15,
+    "created_at": "2025-05-02T14:07:55.586656",
+    "updated_at": "2025-05-02T14:07:55.586656",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 143,
+    "name": "e-mail",
+    "slug": "e-mail",
+    "public_topic_count": 14,
+    "created_at": "2021-06-15T14:07:46.506792",
+    "updated_at": "2021-06-15T14:07:46.506792",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 156,
+    "name": "programming",
+    "slug": "programming",
+    "public_topic_count": 13,
+    "created_at": "2025-02-18T11:41:38.997867",
+    "updated_at": "2025-02-18T11:41:38.997867",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "tools",
+    "slug": "tools",
+    "public_topic_count": 13,
+    "created_at": "2016-07-12T10:45:45.476215",
+    "updated_at": "2016-07-12T10:45:45.476215",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 153,
+    "name": "engrampa",
+    "slug": "engrampa",
+    "public_topic_count": 13,
+    "created_at": "2024-10-27T14:15:12.268529",
+    "updated_at": "2024-10-27T14:15:12.268529",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "18-10-cosmic",
+    "slug": "18-10-cosmic",
+    "public_topic_count": 13,
+    "created_at": "2018-11-11T16:07:54.286630",
+    "updated_at": "2018-11-11T16:07:54.286630",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "mutiny",
+    "slug": "mutiny",
+    "public_topic_count": 12,
+    "created_at": "2017-11-15T23:55:17.678273",
+    "updated_at": "2017-11-15T23:55:17.678273",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "official-polls",
+    "slug": "official-polls",
+    "public_topic_count": 12,
+    "created_at": "2016-07-12T10:45:45.635131",
+    "updated_at": "2017-10-23T15:05:44.758092",
+    "group_names": [
+      "Ubuntu MATE"
+    ]
+  },
+  {
+    "id": 160,
+    "name": "26-04-resolute",
+    "slug": "26-04-resolute",
+    "public_topic_count": 12,
+    "created_at": "2025-12-27T20:14:27.764005",
+    "updated_at": "2025-12-27T20:14:27.764005",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "pluma",
+    "slug": "pluma",
+    "public_topic_count": 11,
+    "created_at": "2018-02-23T05:06:46.752686",
+    "updated_at": "2018-02-23T05:06:46.752686",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "smartphone",
+    "slug": "smartphone",
+    "public_topic_count": 11,
+    "created_at": "2016-07-12T10:45:45.524871",
+    "updated_at": "2016-07-12T10:45:45.524871",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "videochat",
+    "slug": "videochat",
+    "public_topic_count": 11,
+    "created_at": "2016-07-12T10:45:45.481498",
+    "updated_at": "2016-07-12T10:45:45.481498",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 138,
+    "name": "storage",
+    "slug": "storage",
+    "public_topic_count": 11,
+    "created_at": "2021-02-05T13:22:27.430740",
+    "updated_at": "2021-02-05T13:22:27.430740",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "wallpaper-comp-17-10",
+    "slug": "wallpaper-comp-17-10",
+    "public_topic_count": 10,
+    "created_at": "2017-06-13T19:04:47.542448",
+    "updated_at": "2017-06-13T19:04:47.542448",
+    "group_names": [
+      "Ubuntu MATE"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "hidpi",
+    "slug": "hidpi",
+    "public_topic_count": 10,
+    "created_at": "2017-04-21T17:27:43.675476",
+    "updated_at": "2017-04-21T17:27:43.675476",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Microsoft",
+    "slug": "microsoft",
+    "public_topic_count": 10,
+    "created_at": "2019-03-21T18:25:09.771950",
+    "updated_at": "2019-03-22T12:54:38.713229",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Android",
+    "slug": "android",
+    "public_topic_count": 10,
+    "created_at": "2019-03-23T12:27:07.667217",
+    "updated_at": "2019-03-23T12:27:35.699834",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "MSI",
+    "slug": "msi",
+    "public_topic_count": 9,
+    "created_at": "2019-03-21T18:25:09.783779",
+    "updated_at": "2019-03-22T12:54:51.694763",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "mouse",
+    "slug": "mouse",
+    "public_topic_count": 9,
+    "created_at": "2018-06-13T19:01:30.928993",
+    "updated_at": "2018-06-13T19:01:30.928993",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "15-10-wily",
+    "slug": "15-10-wily",
+    "public_topic_count": 8,
+    "created_at": "2018-11-11T15:57:59.396589",
+    "updated_at": "2018-11-11T15:57:59.396589",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 159,
+    "name": "x11-wayland",
+    "slug": "x11-wayland",
+    "public_topic_count": 7,
+    "created_at": "2025-06-26T21:55:04.713721",
+    "updated_at": "2025-06-26T21:55:04.713721",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 129,
+    "name": "arm64",
+    "slug": "arm64",
+    "public_topic_count": 6,
+    "created_at": "2020-05-09T11:17:25.257261",
+    "updated_at": "2020-05-09T11:17:25.257261",
+    "group_names": [
+      "Architectures"
+    ]
+  },
+  {
+    "id": 127,
+    "name": "amd64",
+    "slug": "amd64",
+    "public_topic_count": 6,
+    "created_at": "2020-05-09T11:17:25.235163",
+    "updated_at": "2020-05-09T11:17:25.235163",
+    "group_names": [
+      "Architectures"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "System76",
+    "slug": "system76",
+    "public_topic_count": 6,
+    "created_at": "2019-03-22T12:44:11.519429",
+    "updated_at": "2019-03-22T12:55:57.692707",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "ethics",
+    "slug": "ethics",
+    "public_topic_count": 6,
+    "created_at": "2016-07-12T17:50:00.421825",
+    "updated_at": "2016-07-12T17:50:00.421825",
+    "group_names": [
+      "Information Technology (IT)"
+    ]
+  },
+  {
+    "id": 155,
+    "name": "documentation",
+    "slug": "documentation",
+    "public_topic_count": 6,
+    "created_at": "2024-12-11T15:08:14.388094",
+    "updated_at": "2024-12-11T15:08:14.388094",
+    "group_names": [
+      "Software"
+    ]
+  },
+  {
+    "id": 113,
+    "name": "flatpak",
+    "slug": "flatpak",
+    "public_topic_count": 5,
+    "created_at": "2019-07-13T08:54:40.956401",
+    "updated_at": "2019-07-13T08:54:40.956401",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "raid",
+    "slug": "raid",
+    "public_topic_count": 5,
+    "created_at": "2018-01-21T01:11:17.592720",
+    "updated_at": "2018-01-21T01:11:17.592720",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "bios",
+    "slug": "bios",
+    "public_topic_count": 5,
+    "created_at": "2019-04-25T22:19:05.133969",
+    "updated_at": "2019-04-25T22:19:05.133969",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 151,
+    "name": "ubuntu-pro",
+    "slug": "ubuntu-pro",
+    "public_topic_count": 5,
+    "created_at": "2024-09-04T21:21:06.506123",
+    "updated_at": "2024-09-04T21:21:06.506123",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 114,
+    "name": "appimage",
+    "slug": "appimage",
+    "public_topic_count": 5,
+    "created_at": "2019-07-13T08:54:40.972139",
+    "updated_at": "2019-07-13T08:54:40.972139",
+    "group_names": [
+      "Software Distribution"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "15-04-vivid",
+    "slug": "15-04-vivid",
+    "public_topic_count": 5,
+    "created_at": "2018-11-11T15:53:43.085667",
+    "updated_at": "2018-11-11T15:55:55.166471",
+    "group_names": [
+      "Releases"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "coding",
+    "slug": "coding",
+    "public_topic_count": 4,
+    "created_at": "2016-07-20T21:48:02.201480",
+    "updated_at": "2016-07-20T21:48:02.201480",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "official-guides",
+    "slug": "official-guides",
+    "public_topic_count": 4,
+    "created_at": "2017-10-23T14:59:53.422248",
+    "updated_at": "2017-10-23T14:59:53.422248",
+    "group_names": [
+      "Ubuntu MATE"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "official-lists",
+    "slug": "official-lists",
+    "public_topic_count": 4,
+    "created_at": "2019-03-21T18:41:30.307921",
+    "updated_at": "2019-03-22T12:56:36.176324",
+    "group_names": [
+      "Ubuntu MATE"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "hibernation",
+    "slug": "hibernation",
+    "public_topic_count": 4,
+    "created_at": "2018-05-18T18:12:24.578764",
+    "updated_at": "2018-05-18T18:12:24.578764",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "i386",
+    "slug": "i386",
+    "public_topic_count": 4,
+    "created_at": "2020-05-09T11:17:25.222742",
+    "updated_at": "2020-05-09T11:17:25.222742",
+    "group_names": [
+      "Architectures"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "trackpad",
+    "slug": "trackpad",
+    "public_topic_count": 3,
+    "created_at": "2017-12-16T18:54:16.056420",
+    "updated_at": "2017-12-16T18:54:16.056420",
+    "group_names": [
+      "Hardware"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "password",
+    "slug": "password",
+    "public_topic_count": 3,
+    "created_at": "2017-12-02T04:07:07.071541",
+    "updated_at": "2017-12-02T04:07:07.071541",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 141,
+    "name": "feature-request",
+    "slug": "feature-request",
+    "public_topic_count": 2,
+    "created_at": "2021-03-05T16:09:20.326964",
+    "updated_at": "2021-03-05T16:09:20.326964",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "encoding",
+    "slug": "encoding",
+    "public_topic_count": 1,
+    "created_at": "2017-12-28T12:16:10.563579",
+    "updated_at": "2017-12-28T12:16:10.563579",
+    "group_names": [
+      "Multimedia"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "IBM",
+    "slug": "ibm",
+    "public_topic_count": 1,
+    "created_at": "2019-03-22T12:53:04.049847",
+    "updated_at": "2019-03-22T12:53:04.049847",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 128,
+    "name": "armhf",
+    "slug": "armhf",
+    "public_topic_count": 1,
+    "created_at": "2020-05-09T11:17:25.244965",
+    "updated_at": "2020-05-09T11:17:25.244965",
+    "group_names": [
+      "Architectures"
+    ]
+  },
+  {
+    "id": 139,
+    "name": "philosophy",
+    "slug": "philosophy",
+    "public_topic_count": 1,
+    "created_at": "2021-02-11T21:27:40.634258",
+    "updated_at": "2021-02-11T21:27:40.634258",
+    "group_names": [
+      "Discussions"
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Google",
+    "slug": "google",
+    "public_topic_count": 1,
+    "created_at": "2020-05-09T11:20:36.828053",
+    "updated_at": "2020-05-09T11:20:36.828053",
+    "group_names": [
+      "Brands"
+    ]
+  },
+  {
+    "id": 117,
+    "name": "fstab",
+    "slug": "fstab",
+    "public_topic_count": 1,
+    "created_at": "2019-09-30T01:03:15.943401",
+    "updated_at": "2019-09-30T01:03:15.943401",
+    "group_names": [
+      "Software"
+    ]
+  }
+]
