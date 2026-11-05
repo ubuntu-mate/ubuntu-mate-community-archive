@@ -508,8 +508,62 @@ class DiscourseExporter:
             if post:
                 post["like_user_ids"].append(row["user_id"])
 
+        self._attach_polls(cur, posts_by_id)
+
         cur.close()
         self._write_json("posts.json", posts)
+
+    @staticmethod
+    def _attach_polls(cur, posts_by_id):
+        """Attach aggregate poll results (no per-user votes) to posts as post["polls"]."""
+        for post in posts_by_id.values():
+            post["polls"] = []
+
+        cur.execute("""
+            SELECT id, post_id, name, type, status, close_at
+            FROM polls
+            ORDER BY post_id, id
+        """)
+        polls_by_id = {}
+        for row in cur.fetchall():
+            post = posts_by_id.get(row["post_id"])
+            if not post:
+                continue
+            poll = {
+                "name": row["name"],
+                "type": row["type"],
+                "status": row["status"],
+                "close_at": row["close_at"].isoformat() if row["close_at"] else None,
+                "voters": 0,
+                "options": {},
+            }
+            post["polls"].append(poll)
+            polls_by_id[row["id"]] = poll
+
+        options_by_id = {}
+        cur.execute("""
+            SELECT id, poll_id, digest, anonymous_votes
+            FROM poll_options
+            ORDER BY poll_id, id
+        """)
+        for row in cur.fetchall():
+            poll = polls_by_id.get(row["poll_id"])
+            if poll:
+                poll["options"][row["digest"]] = row["anonymous_votes"] or 0
+                options_by_id[row["id"]] = (poll, row["digest"])
+
+        cur.execute("SELECT poll_id, poll_option_id, user_id FROM poll_votes")
+        voters = {}
+        for row in cur.fetchall():
+            entry = options_by_id.get(row["poll_option_id"])
+            if not entry:
+                continue
+            poll, digest = entry
+            poll["options"][digest] += 1
+            voters.setdefault(row["poll_id"], set()).add(row["user_id"])
+
+        for poll_id, poll in polls_by_id.items():
+            poll["voters"] = len(voters.get(poll_id, ()))
 
     def _export_groups(self):
         """Export groups.json, including member user IDs."""

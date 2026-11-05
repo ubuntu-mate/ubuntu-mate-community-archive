@@ -66,6 +66,7 @@
                         </time>
                     </div>
                     <div class="post-content">{{ post.cooked | safe }}</div>
+                    {% if post.polls %}<script type="application/json" class="poll-data">{{ post.polls | tojson }}</script>{% endif %}
                     <div class="post-controls">
                         {% if post.post_number == 1 and solved_post and solved_post.id != post.id %}
                             <a class="post-solution-link" href="#post-{{ solved_post.id }}">

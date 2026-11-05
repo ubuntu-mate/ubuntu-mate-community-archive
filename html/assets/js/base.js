@@ -60,3 +60,32 @@ document.querySelectorAll("table.users-list").forEach(table => {
         });
     });
 });
+
+// Fill baked Discourse poll markup with results metadata stored on the page.
+document.querySelectorAll("script.poll-data").forEach(script => {
+    const polls = JSON.parse(script.textContent);
+    const content = script.previousElementSibling;
+    if (!content)
+        return;
+    content.querySelectorAll(".poll").forEach(el => {
+        const poll = polls.find(p => p.name === (el.dataset.pollName || "poll"));
+        if (!poll)
+            return;
+        const total = Object.values(poll.options).reduce((a, b) => a + b, 0);
+        el.querySelectorAll("li[data-poll-option-id]").forEach(li => {
+            const votes = poll.options[li.dataset.pollOptionId] || 0;
+            const pct = total ? Math.round(votes / total * 100) : 0;
+            const label = li.innerHTML;
+            li.innerHTML = `<div class="poll-option-percent">${pct}%</div>
+                <div class="poll-option-label">${label}</div>
+                <div class="poll-option-bar"><span style="width:${pct}%"></span></div>
+                <div class="poll-option-votes">${votes.toLocaleString()} ${votes === 1 ? "vote" : "votes"}</div>`;
+        });
+
+        const info = document.createElement("div");
+        info.className = "poll-info poll-info-filled";
+        info.innerHTML = `<span class="poll-voters">${poll.voters.toLocaleString()}</span> ${poll.voters === 1 ? "voter" : "voters"}`
+            + (poll.status === "closed" ? " &middot; closed" : "");
+        el.append(info);
+    });
+});

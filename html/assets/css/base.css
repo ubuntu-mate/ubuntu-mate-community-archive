@@ -1339,3 +1339,74 @@ article.topic {
         padding-left: 6px;
     }
 }
+
+/* Poll Results (filled in by JS) */
+.poll {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    margin: 1em 0;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+.poll > div:first-child {
+    flex: 1;
+    min-width: 0;
+    padding: 0.5em 1em;
+}
+
+.poll-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.poll-container li {
+    margin: 0.8em 0;
+}
+
+.poll-option-percent {
+    color: var(--grey);
+    text-align: right;
+}
+
+.poll-option-bar {
+    background: var(--border);
+    height: 10px;
+    margin: 4px 0;
+}
+
+.poll-option-bar span {
+    background: var(--grey);
+    display: block;
+    height: 100%;
+}
+
+.poll-option-votes {
+    color: var(--grey);
+}
+
+/* Baked Discourse markup contains a placeholder "0 voters" */
+.poll-info:not(.poll-info-filled) {
+    display: none;
+}
+
+.poll-info {
+    align-self: center;
+    border-left: 1px solid var(--border);
+    color: var(--grey);
+    padding: 1em 2em;
+    text-align: center;
+}
+
+.poll-voters {
+    display: block;
+    font-size: 2em;
+}
