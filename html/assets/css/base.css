@@ -522,6 +522,25 @@ td.category {
 
 .post {
     display: flex;
+    scroll-margin-top: 112px;
+
+    &.highlight {
+        animation: post-highlight 2s ease-in-out forwards;
+        background: var(--secondary);
+        margin-left: -8px;
+        padding-left: 8px;
+    }
+}
+
+@keyframes post-highlight {
+    0% {
+        background: var(--solved-bg);
+        border-color: var(--solved-border);
+    }
+    100% {
+        background: transparent;
+        border-color: var(--border);
+    }
 }
 
 .post.post-solved {

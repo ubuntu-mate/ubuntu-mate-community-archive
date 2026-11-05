@@ -155,3 +155,16 @@ document.querySelectorAll("script.poll-data").forEach(script => {
         }
     });
 })();
+
+// Jump to a post if a post ID is specified in the URL hash (#post-1234)
+(() => {
+    const postId = window.location.hash.slice(1);
+    if (!postId)
+        return;
+
+    const post = document.getElementById(postId);
+    if (post) {
+        post.classList.add("highlight");
+        post.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+})();
