@@ -1,0 +1,395 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username }} - Profile{% endblock %}
+{% block canonical %}u/{{ user.username }}{% endblock %}
+
+{% block content %}
+    {% set cover_photo = user.profile_background_url or user.card_background_url %}
+    <article class="profile-page">
+
+        {% if cover_photo %}
+            <div class="profile-cover-photo">
+                <img src="{{ cover_photo }}" alt="">
+            </div>
+        {% endif %}
+
+        <header class="profile-header">
+            <div class="profile-avatar-wrap">
+                {% if user.avatar_url %}
+                    <img class="profile-avatar" src="{{ user.avatar_url }}" alt="{{ user.username }}">
+                {% else %}
+                    <div class="profile-avatar profile-avatar-initials" style="background: #{{ user.username|avatar_color }}">{{ user.username[0] | upper }}</div>
+                {% endif %}
+            </div>
+            <div class="profile-identity">
+                <h1 class="profile-username">
+                    {{ user.username }}
+                    {% if user.admin %}<i class="fa-solid fa-shield-halved" title="Admin"></i>
+                    {% elif user.moderator %}<i class="fa-solid fa-shield" title="Moderator"></i>
+                    {% endif %}
+                </h1>
+                {% if user.name %}<div class="profile-name">{{ user.name }}</div>{% endif %}
+                {% if user.title %}<div class="profile-title">{{ user.title }}</div>{% endif %}
+                <div class="profile-details">
+                    {% if user.location %}
+                        <span><i class="fa-solid fa-location-dot"></i> {{ user.location }}</span>
+                    {% endif %}
+                    {% if user.website %}
+                        <span><i class="fa-solid fa-globe"></i> <a href="{{ user.website }}" rel="nofollow noopener noreferrer" target="_blank">{{ user.website | replace('https://', '') | replace('http://', '') }}</a></span>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <div class="profile-meta-bar">
+            {% if user.created_at %}
+                <span>Joined <time class="value relative-time-year">{{ user.created_at }}</time></span>
+            {% endif %}
+            {% if user.last_posted_at %}
+                <span>Last Post <time class="value relative-time-year">{{ user.last_posted_at }}</time></span>
+            {% endif %}
+            {% if user.last_seen_at %}
+                <span>Seen <time class="value relative-time-year">{{ user.last_seen_at }}</time></span>
+            {% endif %}
+            {% if user.posts_read_count %}
+                <span>Views <span class="value">{{ user.posts_read_count | number_format }}</span></span>
+            {% endif %}
+            {% if user.trust_level is not none %}
+                <span>Trust Level <span class="value">{{ trust_levels.get(user.trust_level, user.trust_level) }}</span></span>
+            {% endif %}
+        </div>
+
+        <input type="radio" name="profile-tab-{{ user.id }}" id="profile-tab-summary-{{ user.id }}" class="profile-tab-toggle" checked>
+        <input type="radio" name="profile-tab-{{ user.id }}" id="profile-tab-activity-{{ user.id }}" class="profile-tab-toggle">
+        <input type="radio" name="profile-tab-{{ user.id }}" id="profile-tab-badges-{{ user.id }}" class="profile-tab-toggle">
+
+        <nav class="profile-tabs">
+            <label for="profile-tab-summary-{{ user.id }}" class="profile-tab-label">
+                <i class="fa-solid fa-chart-bar"></i> Summary
+            </label>
+            <label for="profile-tab-activity-{{ user.id }}" class="profile-tab-label">
+                <i class="fa-solid fa-stream"></i> Activity
+            </label>
+            <label for="profile-tab-badges-{{ user.id }}" class="profile-tab-label">
+                <i class="fa-solid fa-certificate"></i> Badges
+            </label>
+        </nav>
+
+        <section class="profile-panel profile-panel-summary">
+            {% if user.bio_cooked or user.bio_raw %}
+                <div class="profile-bio">
+                    {% if user.bio_cooked %}
+                        {{ user.bio_cooked | safe }}
+                    {% else %}
+                        <p>{{ user.bio_raw }}</p>
+                    {% endif %}
+                </li>
+            {% endif %}
+
+            <ul class="profile-stats">
+                <li>
+                    <strong>{{ user.days_visited | default(0) | compact_number }}</strong>
+                    <span>days visited</span>
+                </li>
+                <li>
+                    <strong>{{ user.time_read | default(0) | seconds_to_time }}</strong>
+                    <span>read time</span>
+                </li>
+                <li>
+                    <strong>{{ user.topics_entered | default(0) | compact_number }}</strong>
+                    <span>topics viewed</span>
+                </li>
+                <li>
+                    <strong>{{ user.posts_read_count | default(0) | compact_number }}</strong>
+                    <span>posts read</span>
+                </li>
+                <li>
+                    <strong>{{ user.likes_given | default(0) | compact_number }}</strong>
+                    <span>❤ given</span>
+                </li>
+                <li>
+                    <strong>{{ user.likes_received | default(0) | compact_number }}</strong>
+                    <span>❤ received</span>
+                </li>
+                <li>
+                    <strong>{{ user.topic_count | default(0) | number_format }}</strong>
+                    <span>topics created</span>
+                </li>
+                <li>
+                    <strong>{{ user.post_count | default(0) | compact_number }}</strong>
+                    <span>posts created</span>
+                </li>
+                <li>
+                    <strong>{{ solutions_count | number_format }}</strong>
+                    <span>solutions</span>
+                </li>
+            </ul>
+
+            {# Top Replies & Top Topics #}
+            <div class="profile-grid-2">
+                <div class="profile-section">
+                    <h2>Top Replies</h2>
+                    <ul class="profile-list">
+                        {% for reply in top_replies %}
+                            {% set parent = topics.get(reply.topic_id) %}
+                            <li>
+                                <div class="profile-list-meta">
+                                    <time class="relative-time-year">{{ reply.created_at }}</time>
+                                    <span>❤ {{ reply.like_count | default(0) }}</span>
+                                </div>
+                                {% if parent %}
+                                    <a href="/t/{{ reply.topic_id }}.html#post-{{ reply.id }}">{{ parent.title }}</a>
+                                {% else %}
+                                    Reply in topic #{{ reply.topic_id }}
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="profile-empty">No top replies.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <h2>Top Topics</h2>
+                    <ul class="profile-list">
+                        {% for topic in top_topics %}
+                            <li>
+                                <div class="profile-list-meta">
+                                    <time class="relative-time-year">{{ topic.created_at }}</time>
+                                    <span>👁 {{ topic.views | default(0) | compact_number }}</span>
+                                </div>
+                                <a href="/t/{{ topic.id }}.html">{{ topic.title }}</a>
+                            </li>
+                        {% else %}
+                            <li class="profile-empty">No top topics.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {# Most Replied To & Most Liked By #}
+                <div class="profile-section">
+                    <h2>Most Replied To</h2>
+                    <ul class="profile-user-list">
+                        {% for item in most_replied_to %}
+                            {% set u = item.user %}
+                            <li>
+                                <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                    {% if u.avatar_url %}
+                                        <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
+                                    {% else %}
+                                        <span class="mini-avatar avatar-placeholder" style="background: #{{ u.username|avatar_color }}">{{ u.username[0] | upper }}</span>
+                                    {% endif %}
+                                    <span class="profile-user-name">{{ u.username }}</span>
+                                </a>
+                                <span class="profile-user-count">{{ item.count }}</span>
+                            </li>
+                        {% else %}
+                            <li class="profile-empty">No data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <h2>Most Liked By</h2>
+                    <ul class="profile-user-list">
+                        {% for item in most_liked_by %}
+                            {% set u = item.user %}
+                            <li>
+                                <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                    {% if u.avatar_url %}
+                                        <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
+                                    {% else %}
+                                        <span class="mini-avatar avatar-placeholder" style="background: #{{ u.username|avatar_color }}">{{ u.username[0] | upper }}</span>
+                                    {% endif %}
+                                    <span class="profile-user-name">{{ u.username }}</span>
+                                </a>
+                                <span class="profile-user-count">{{ item.count }}</span>
+                            </li>
+                        {% else %}
+                            <li class="profile-empty">No data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {# Most Liked #}
+                {% if most_liked %}
+                    <div class="profile-section">
+                        <h2>Most Liked</h2>
+                        <ul class="profile-user-list">
+                            {% for item in most_liked %}
+                                {% set u = item.user %}
+                                <li>
+                                    <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                        {% if u.avatar_url %}
+                                            <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
+                                        {% else %}
+                                            <span class="mini-avatar avatar-placeholder" style="background: #{{ u.username|avatar_color }}">{{ u.username[0] | upper }}</span>
+                                        {% endif %}
+                                        <span class="profile-user-name">{{ u.username }}</span>
+                                    </a>
+                                    <span class="profile-user-count">{{ item.count }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {# Top Categories #}
+                {% if top_categories %}
+                    <div class="profile-section">
+                        <h2>Top Categories</h2>
+                        <ul class="profile-user-list">
+                            {% for item in top_categories %}
+                                {% set cat = item.category %}
+                                <li>
+                                    <a href="/c/{{ cat.id }}.html" class="profile-user-item category-name-badge" style="border-left-color: #{{ cat.color or '888888' }}">{{ cat.name }}</a>
+                                    <span class="profile-user-count">{{ item.topics if item.topics else '–' }} topics · {{ item.replies }} replies</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            {# Top Badges preview #}
+            {% if user_badges %}
+                <div class="profile-section profile-section-top-badges">
+                    <h2>Top Badges</h2>
+                    <div class="badges-grid profile-top-badges">
+                        {% for badge in (user_badges | sort(attribute='badge_type_id', reverse=True))[:6] %}
+                            <div class="badge-card">
+                                <div class="badge-icon {{ badge.badge_type_name | lower if badge.badge_type_name else 'bronze' }}">
+                                    <span class="fa fa-{{ badge.icon | replace('far-eye', 'eye') }}"></span>
+                                </div>
+                                <div class="badge-meta">
+                                    <h3 class="badge-name">{{ badge.name }}</h3>
+                                    <div class="badge-description">{{ badge.description or "No description available." }}</div>
+                                    <div class="badge-stats">
+                                        {% if badge.user_grant_count > 1 %}
+                                            {{ badge.user_grant_count | number_format }} awarded
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <label class="label-as-link" tabindex="0" for="profile-tab-badges-{{ user.id }}" class="profile-tab-label">More Badges</label>
+                </div>
+            {% endif %}
+
+        </section>
+
+        {# ── Activity panel ────────────────────────────────────────────────── #}
+        <section class="profile-panel profile-panel-activity">
+            <input type="radio" name="activity-tab-{{ user.id }}" id="activity-tab-topics-{{ user.id }}" class="profile-tab-toggle activity-tab-toggle" checked>
+            <input type="radio" name="activity-tab-{{ user.id }}" id="activity-tab-replies-{{ user.id }}" class="profile-tab-toggle activity-tab-toggle">
+            <input type="radio" name="activity-tab-{{ user.id }}" id="activity-tab-likes-{{ user.id }}" class="profile-tab-toggle activity-tab-toggle">
+            <input type="radio" name="activity-tab-{{ user.id }}" id="activity-tab-solved-{{ user.id }}" class="profile-tab-toggle activity-tab-toggle">
+
+            <nav class="profile-tabs activity-tabs">
+                <label for="activity-tab-topics-{{ user.id }}" class="profile-tab-label">Topics</label>
+                <label for="activity-tab-replies-{{ user.id }}" class="profile-tab-label">Replies</label>
+                <label for="activity-tab-likes-{{ user.id }}" class="profile-tab-label">Likes</label>
+                <label for="activity-tab-solved-{{ user.id }}" class="profile-tab-label">Solved</label>
+            </nav>
+
+            <section class="activity-panel activity-panel-topics">
+                <ul class="profile-list">
+                    {% for topic in recent_topics %}
+                        <li>
+                            <a href="/t/{{ topic.id }}.html">{{ topic.title }}</a>
+                            <small><time class="relative-time-year">{{ topic.last_posted_at or topic.created_at }}</time></small>
+                        </li>
+                    {% else %}
+                        <li>No topic activity available.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section class="activity-panel activity-panel-replies">
+                <ul class="profile-list">
+                    {% for reply in recent_replies %}
+                        {% set parent = topics.get(reply.topic_id) %}
+                        <li>
+                            {% if parent %}
+                                <a href="/t/{{ reply.topic_id }}.html#post-{{ reply.id }}">{{ parent.title }}</a>
+                            {% else %}
+                                Reply in topic #{{ reply.topic_id }}
+                            {% endif %}
+                            <small><time class="relative-time-year">{{ reply.created_at }}</time></small>
+                        </li>
+                    {% else %}
+                        <li>No reply activity available.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section class="activity-panel activity-panel-likes">
+                <ul class="profile-list">
+                    {% for liked_post in liked_posts %}
+                        {% set parent = topics.get(liked_post.topic_id) %}
+                        <li>
+                            {% if parent %}
+                                <a href="/t/{{ liked_post.topic_id }}.html#post-{{ liked_post.id }}">{{ parent.title }}</a>
+                            {% else %}
+                                Post #{{ liked_post.id }}
+                            {% endif %}
+                            <small>❤ {{ liked_post.like_count | default(0) | number_format }}</small>
+                        </li>
+                    {% else %}
+                        <li>No liked posts available.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section class="activity-panel activity-panel-solved">
+                <ul class="profile-list">
+                    {% for solved_post in solved_posts %}
+                        {% set parent = topics.get(solved_post.topic_id) %}
+                        <li>
+                            {% if parent %}
+                                <a href="/t/{{ solved_post.topic_id }}.html#post-{{ solved_post.id }}">{{ parent.title }}</a>
+                            {% else %}
+                                Solved post #{{ solved_post.id }}
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li>No solved activity available.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </section>
+
+        {# ── Badges panel ──────────────────────────────────────────────────── #}
+        <section class="profile-panel profile-panel-badges">
+            <div class="badges-grid">
+                {% for badge in user_badges %}
+                    <div class="badge-card">
+                        <div class="badge-icon {{ badge.badge_type_name | lower if badge.badge_type_name else 'bronze' }}">
+                            <span class="fa fa-{{ badge.icon | replace('far-', '') }}"></span>
+                        </div>
+                        <div class="badge-meta">
+                            <h3 class="badge-name">{{ badge.name }}</h3>
+                            <div class="badge-description">
+                                {{ badge.description or "No description available." }}
+                            </div>
+                            <div class="badge-stats">
+                                {% if badge.granted_at %}
+                                <span>Awarded <time class="relative-time-year">{{ badge.granted_at }}</time></span>
+                                {% endif %}
+                                {% if badge.granted_at and badge.user_grant_count > 1 %}&bull;{% endif %}
+                                {% if badge.user_grant_count > 1 %}
+                                <span class="badge-grant-count">{{ badge.user_grant_count | number_format }} times</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No badges awarded.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+    </article>
+{% endblock %}

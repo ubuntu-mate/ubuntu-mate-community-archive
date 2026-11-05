@@ -6,7 +6,7 @@
 # The server will need to handle routing or redirection, like from
 # /t/name-of-topic/123 (original) --> /topics/123.html (archive)
 #
-
+import hashlib
 import json
 import math
 import os
@@ -86,7 +86,44 @@ TRUST_LEVEL_LABELS = {0: "new", 1: "basic", 2: "member", 3: "regular", 4: "leade
 TOP_PARTICIPANTS_PER_TOPIC = 5
 
 
-# --- Jinja2 filters -------------------------
+# Discourse letter-avatar palette (lib/letter_avatar.rb); order matters.
+AVATAR_COLORS = [
+    "c67d28", "3d9bf3", "4af34b", "ee59a6", "34f0e0", "b19c9b", "f07891", "6f9a4e",
+    "edb3f5", "ed655f", "59ef9b", "2bfe46", "a3d4f5", "41988e", "a587f6", "b5a626",
+    "bbe5ce", "4da419", "b3f665", "ea5d25", "e19b73", "8e8cbc", "df788c", "f9ae1b",
+    "f475e1", "898d66", "4bbf92", "bcef8e", "a4c791", "ad7895", "3bc359", "dec6dc",
+    "4491bb", "ecccb3", "9fc348", "bc79bd", "a6a055", "b5e925", "ecb155", "7993a0",
+    "eada6e", "f19dbf", "3ec8ea", "85f322", "58956e", "3be4f8", "b77776", "fbc32d",
+    "71c47a", "c57346", "50afbb", "67e7ee", "f04885", "e495f1", "b4bc9f", "ac8455",
+    "b487fb", "ecc23a", "d9b06d", "58f4c7", "ba9def", "71e660", "ce73a5", "f4b2a3",
+    "e68b1a", "f17d59", "53a042", "6bbea6", "c5a1d2", "c6cbf5", "ee7513", "e47774",
+    "839c29", "91b2a8", "8baadc", "e95f7d", "57b2e6", "9dc877", "ed8c4c", "e5b9ba",
+    "90ced4", "ecd19e", "b9bd4f", "22d042", "54ee81", "858c86", "439d5e", "a8b319",
+    "8c91f0", "97f17d", "43a26b", "c89c15", "a9adbd", "e274bd", "85e7bf", "c2a13f",
+    "f14d63", "f1d935", "7bcc69", "d2c977", "e56c9b", "f05b48", "bb73d2", "f0a364",
+    "b2d939", "b38774", "ccd318", "ba8739", "dfb087", "cc9497", "74df32", "5fc32e",
+    "7ba0ec", "b5ac83", "8edcca", "f08c70", "ac91a4", "e47c2d", "8797f3", "2acd7d",
+    "c0e974", "77aa72", "9e8a1a", "49beb7", "b9e5f3", "e36b37", "c4cdca", "848f3c",
+    "e9c0ed", "3e96dc", "cdc98d", "6a8cbe", "a183cd", "87869e", "c68b51", "73ab20",
+    "65b543", "958977", "258eb7", "b782af", "a87d85", "7c8e57", "ec9cab", "e8c25b",
+    "dbc845", "90db22", "db5fbb", "919ad9", "a5b964", "7feea3", "e0b2c6", "779978",
+    "7cd45c", "aca169", "e79b87", "9d8465", "7ab992", "35a633", "46a35a", "96bed5",
+    "d26b3c", "a698b9", "9fc29f", "278dde", "cab0a1", "5f8ce5", "a88e57", "5daacb",
+    "9f8e36", "0ea827", "5e9695", "bbce88", "9de0a6", "eb9ed0", "6de8d8", "8dc957",
+    "d07c76", "8e7dd6", "13edae", "48db29", "ea666f", "a88e4f", "bc8723", "5f9b8f",
+    "94ad74", "df705f", "e480ec", "ce7236", "c37758", "eb8c5e", "ebca7d", "e99b99",
+    "d6d6ee", "f6c823", "977dab", "8491ac", "838e76", "c77e96", "3da27b", "3ab097",
+    "d78d45", "e19adc", "dc4da7", "e9a140", "82dd89", "51bf81", "a9a28c", "aeb1de",
+    "ecae2f", "e9bcb4", "45deac", "47e85d", "76d3ee", "9de053", "da6949", "7ea924",
+]
+
+
+def filter_avatar_color(username):
+    # Mirrors Discourse's letter avatar choice: MD5 of the lowercased username, modulo the palette size.
+    digest = hashlib.md5((username or "").lower().encode("utf-8")).hexdigest()
+    return AVATAR_COLORS[int(digest[:15], 16) % len(AVATAR_COLORS)]
+
+
 def filter_number_format(value):
     if value is None:
         return "0"
@@ -134,6 +171,15 @@ def filter_seconds_to_time(seconds):
         return f"{s // 86400}d"
 
 
+def filter_minutes_to_time(seconds):
+    minutes = int(seconds or 0) // 60
+    if minutes < 60:
+        return f"{minutes}m"
+    if minutes < 1440:
+        return f"{minutes // 60}h"
+    return f"{minutes // 1440}d"
+
+
 def make_jinja_env():
     env = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
@@ -142,10 +188,12 @@ def make_jinja_env():
         lstrip_blocks=True,
     )
     env.filters["number_format"] = filter_number_format
+    env.filters["avatar_color"] = filter_avatar_color
     env.filters["short_date"] = filter_short_date
     env.filters["compact_number"] = filter_compact_number
     env.filters["read_time"] = filter_read_time
     env.filters["seconds_to_time"] = filter_seconds_to_time
+    env.filters["minutes_to_time"] = filter_minutes_to_time
     return env
 
 
@@ -179,7 +227,6 @@ class Archive:
         self.badges = {b["id"]: b for b in load_json("badges.json")}
         self.user_badges = load_json("user_badges.json")
         self.tags = {t["id"]: t for t in load_json("tags.json")}
-        self.groups = {g["id"]: g for g in load_json("groups.json")}
         self.topics = {t["id"]: t for t in load_json("topics.json")}
         self.posts = {p["id"]: p for p in load_json("posts.json")}
 
@@ -219,13 +266,27 @@ class Archive:
             topic["participants"] = participants[:TOP_PARTICIPANTS_PER_TOPIC]
 
     def _link_user_badges(self):
+        badges_by_user_and_id = {}
         for grant in self.user_badges:
             badge = self.badges.get(grant["badge_id"])
             if not badge:
                 continue
+
+            user_id = grant["user_id"]
+            user_badges = badges_by_user_and_id.setdefault(user_id, {})
+            existing = user_badges.get(badge["id"])
+            if existing:
+                existing["user_grant_count"] += 1
+                granted_at = grant.get("granted_at")
+                if granted_at and (not existing["granted_at"] or granted_at > existing["granted_at"]):
+                    existing["granted_at"] = granted_at
+                continue
+
             merged = dict(badge)
             merged["granted_at"] = grant.get("granted_at")
-            self.badges_by_user.setdefault(grant["user_id"], []).append(merged)
+            merged["user_grant_count"] = 1
+            user_badges[badge["id"]] = merged
+            self.badges_by_user.setdefault(user_id, []).append(merged)
 
     def _link_category_topics(self):
         for category in self.categories.values():
@@ -270,6 +331,28 @@ def generate_badges_page(env, archive):
 
     html = env.get_template("badges.html").render(badges=badges, badge_groups=sorted_groups, total_grants=total_grants)
     write_output("badges.html", html)
+
+
+def generate_badge_pages(env, archive):
+    print("Generating: Badge pages")
+    latest_grants = {}
+    for grant in archive.user_badges:
+        user = archive.users.get(grant["user_id"])
+        if not user or grant["badge_id"] not in archive.badges:
+            continue
+        key = (grant["badge_id"], user["id"])
+        existing = latest_grants.get(key)
+        if not existing or (grant.get("granted_at") or "") > (existing["granted_at"] or ""):
+            latest_grants[key] = {"user": user, "granted_at": grant.get("granted_at")}
+
+    grants_by_badge = {}
+    for (badge_id, _), entry in latest_grants.items():
+        grants_by_badge.setdefault(badge_id, []).append(entry)
+
+    for badge in archive.badges.values():
+        grants = sorted(grants_by_badge.get(badge["id"], []), key=lambda g: g["granted_at"] or "", reverse=True)
+        html = env.get_template("badge.html").render(badge=badge, grants=grants)
+        write_output(os.path.join("badge", f"{badge['id']}.html"), html)
 
 
 def generate_topics_index(env, archive):
@@ -330,7 +413,7 @@ def generate_user_pages(env, archive):
         user_topics = topics_by_user.get(uid, [])
         user_posts = posts_by_user.get(uid, [])
 
-        recent_topics = sorted(user_topics, key=lambda t: t.get("last_posted_at") or t.get("created_at"), reverse=True)[:10]
+        recent_topics = sorted(user_topics, key=lambda t: t.get("last_posted_at") or t.get("created_at"), reverse=True)
         top_topics = sorted(
             user_topics,
             key=lambda t: (t.get("views") or 0, t.get("like_count") or 0, t.get("posts_count") or 0),
@@ -338,13 +421,13 @@ def generate_user_pages(env, archive):
         )[:5]
 
         replies = [p for p in user_posts if (p.get("post_number") or 0) > 1]
-        recent_replies = sorted(replies, key=lambda p: p["created_at"], reverse=True)[:10]
+        recent_replies = sorted(replies, key=lambda p: p["created_at"], reverse=True)
         top_replies = sorted(replies, key=lambda p: (p.get("like_count") or 0, p["created_at"]), reverse=True)[:5]
         liked_posts = sorted(
             [p for p in user_posts if (p.get("like_count") or 0) > 0],
             key=lambda p: (p.get("like_count") or 0, p["created_at"]),
             reverse=True,
-        )[:10]
+        )
 
         # most_liked_by: users who liked this user's posts most.
         liked_by_counts = {}
@@ -395,19 +478,18 @@ def generate_user_pages(env, archive):
             key=lambda x: -(x["topics"] + x["replies"]),
         )[:5]
 
-        solutions_count = sum(1 for post_id in solved_post_ids if archive.posts.get(post_id, {}).get("user_id") == uid)
-        primary_group = archive.groups.get(user.get("primary_group_id"))
+        solved_posts = sorted([post for post in user_posts if post["id"] in solved_post_ids], key=lambda p: p["created_at"], reverse=True)
+        solutions_count = len(solved_posts)
         user_badges = archive.badges_by_user.get(uid, [])
 
         html = env.get_template("profile.html").render(
             user=user,
-            primary_group=primary_group,
             solutions_count=solutions_count,
             trust_levels=TRUST_LEVEL_LABELS,
             recent_topics=recent_topics,
             recent_replies=recent_replies,
             liked_posts=liked_posts,
-            solved_posts=[],  # not currently tracked per-user
+            solved_posts=solved_posts,
             top_topics=top_topics,
             top_replies=top_replies,
             most_liked_by=most_liked_by,
@@ -430,11 +512,21 @@ def generate_users_directory_page(env, archive):
     write_output("users.html", html)
 
 
+def tag_sections(tags):
+    """Group tags by tag group (alphabetical), ungrouped tags last."""
+    by_group = {}
+    for tag in tags:
+        for name in tag.get("group_names") or ["Tags"]:
+            by_group.setdefault(name, []).append(tag)
+    names = sorted(by_group, key=lambda n: (n == "Tags", n.lower()))
+    return [(n, sorted(by_group[n], key=lambda t: t["name"].lower())) for n in names]
+
+
 def generate_tags_pages(env, archive):
     print("Generating: Tags")
     tags = list(archive.tags.values())
 
-    html = env.get_template("tags.html").render(tags=tags)
+    html = env.get_template("tags.html").render(tag_sections=tag_sections(tags))
     write_output("tags.html", html)
 
     topics_by_tag_id = {}
@@ -443,21 +535,13 @@ def generate_tags_pages(env, archive):
             topics_by_tag_id.setdefault(tag["id"], []).append(topic)
 
     for tag in tags:
-        topics_for_tag = topics_by_tag_id.get(tag["id"], [])
+        topics_for_tag = sorted(
+            topics_by_tag_id.get(tag["id"], []),
+            key=lambda t: t.get("last_posted_at") or t.get("created_at"),
+            reverse=True,
+        )
         html = env.get_template("tag_view.html").render(tag=tag, topics=topics_for_tag, users=archive.users)
         write_output(os.path.join("tags", f"{tag['slug']}.html"), html)
-
-
-def generate_groups_pages(env, archive):
-    print("Generating: Groups")
-    groups = list(archive.groups.values())
-    html = env.get_template("groups.html").render(groups=groups)
-    write_output("groups.html", html)
-
-    for group in groups:
-        members = [archive.users[uid] for uid in group["member_user_ids"] if uid in archive.users]
-        html = env.get_template("group.html").render(group=group, members=members)
-        write_output(os.path.join("g", f"{group['id']}.html"), html)
 
 
 def generate_category_pages(env, archive):
@@ -465,9 +549,7 @@ def generate_category_pages(env, archive):
     for category in archive.categories.values():
         topics = sorted(category["topics"], key=lambda t: t.get("last_posted_at") or t.get("created_at"), reverse=True)
         subcategories = [c for c in archive.categories.values() if c.get("parent_category_id") == category["id"]]
-        html = env.get_template("category.html").render(
-            category=category, topics=topics, users=archive.users, subcategories=subcategories
-        )
+        html = env.get_template("category.html").render(category=category, topics=topics, users=archive.users, subcategories=subcategories)
         write_output(os.path.join("c", f"{category['id']}.html"), html)
 
 
@@ -485,12 +567,12 @@ def main():
 
     generate_index_page(env, archive)
     generate_badges_page(env, archive)
+    generate_badge_pages(env, archive)
     generate_topics_index(env, archive)
     generate_topic_pages(env, archive)
     generate_user_pages(env, archive)
     generate_users_directory_page(env, archive)
     generate_tags_pages(env, archive)
-    generate_groups_pages(env, archive)
     generate_category_pages(env, archive)
     generate_static_page(env, "404.html")
 

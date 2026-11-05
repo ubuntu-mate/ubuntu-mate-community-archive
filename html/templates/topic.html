@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block canonical %}t/{{ topic.slug }}/{{ topic.id }}{% endblock %}
+{% block title %}{{ topic.title }}{% endblock %}
+
+{% block content %}
+    <article class="topic">
+        <h1>{{ topic.title }}</h1>
+        {% if topic.category_id and topic.category_id in categories %}
+        <a class="category-chip" href="/c/{{ topic.category_id }}.html" style="--category-color: #{{ categories[topic.category_id].color }}">
+            <div class="square"></div>
+            <span class="category-name">{{ categories[topic.category_id].name }}</span>
+        </a>
+        {% endif %}
+
+        <section class="posts">
+            {% for post in posts %}
+            {% set _user = users.get(post.user_id) %}
+            {% if _user and post.is_action %}
+            <div class="post-action" id="post-{{ post.id }}">
+                <span class="fa fa-{{ post.action_icon }}"></span>
+                <a href="/u/{{ _user.username }}.html" title="{{ _user.username }}">
+                    {% if _user.avatar_url %}
+                        <img src="{{ _user.avatar_url }}" alt="{{ _user.username }}"/>
+                    {% else %}
+                        <div class="avatar-placeholder" style="background: #{{ _user.username|avatar_color }}">{{ _user.username[0]|upper }}</div>
+                    {% endif %}
+                </a>
+                {{ post.action_label }} on {{ post.created_at | short_date }}
+            </div>
+            {% elif _user %}
+            <div class="post{% if post.id == solved_post_id %} post-solved{% endif %}" id="post-{{ post.id }}">
+                <div class="post-avatar">
+                    <a href="/u/{{ _user.username }}.html">
+                        {% if _user.avatar_url %}
+                            <img src="{{ _user.avatar_url }}" alt="{{ _user.username }}"/>
+                        {% else %}
+                            <div class="avatar-placeholder" style="background: #{{ _user.username|avatar_color }}">{{ _user.username[0]|upper }}</div>
+                        {% endif %}
+                    </a>
+                </div>
+
+                <div class="post-body">
+                    <div class="post-metadata">
+                        <div class="post-author">
+                            <a href="/u/{{ _user.username }}">
+                                {{ _user.username }}
+                            </a>
+                            {% if _user.admin or _user.moderator %}
+                                <span class="fa fa-shield-halved post-author-staff-icon" title="{{ 'Administrator' if _user.admin else 'Moderator' }}" aria-label="{{ 'Administrator' if _user.admin else 'Moderator' }}"></span>
+                            {% endif %}
+                            {% if _user.title %}
+                                <span class="post-author-title">
+                                    {{ _user.title }}
+                                </span>
+                            {% endif %}
+                        </div>{#
+                        {% if post.edit_count > 0%}
+                            <div class="edit-count" title="This post was edited {{ post.edit_count }} times.">
+                                {{ post.edit_count }}
+                                <span class="fa fa-pencil"></span>
+                            </div>
+                        {% endif %}#}
+                        <time class="post-created">
+                            {{ post.created_at }}
+                        </time>
+                    </div>
+                    <div class="post-content">{{ post.cooked | safe }}</div>
+                    <div class="post-controls">
+                        {% if post.post_number == 1 and solved_post and solved_post.id != post.id %}
+                            <a class="post-solution-link" href="#post-{{ solved_post.id }}">
+                                <span class="fa-solid fa-square-check"></span>
+                                Jump to solved post
+                            </a>
+                        {% endif %}
+                        {% if post.id == solved_post_id %}
+                            <span class="post-solved-indicator" title="This post is marked as solved">
+                                <span class="fa-solid fa-square-check"></span>
+                                Solved
+                            </span>
+                        {% endif %}
+                        {% if post.like_count > 0 %}
+                            <details class="post-likes">
+                                <summary>
+                                    {{ post.like_count }} <span class="fa fa-heart"></span>
+                                </summary>
+                                <div class="post-likes-list">
+                                {% for user in post.likes %}
+                                    <a href="/u/{{ user.username }}.html" title="{{ user.username }}">
+                                        {% if user.avatar_url %}
+                                            <img src="{{ user.avatar_url }}" alt="{{ user.username }}"/>
+                                        {% else %}
+                                            <div class="avatar-placeholder" style="background: #{{ user.username|avatar_color }}">{{ user.username[0]|upper }}</div>
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                                </div>
+                            </details>
+                        {% endif %}
+                    </div>
+                    {% if loop.first %}
+                    <div class="topic-summary-stats">
+                        <span><span class="fa-regular fa-eye"></span> {{ topic.views | compact_number }}</span>
+                        <span><span class="fa-regular fa-heart"></span> {{ topic.like_count | compact_number }}</span>
+                        <span><span class="fa-regular fa-user"></span> {{ topic_participant_count | number_format }} users</span>
+                        {% if topic.word_count | read_time %}
+                            <span><span class="fa-regular fa-clock"></span> {{ topic.word_count | read_time }}</span>
+                        {% endif %}
+                        {% if topic_participants %}
+                            <div class="topic-summary-contributors">
+                                {% for participant in topic_participants %}
+                                    <a href="/u/{{ participant.username }}.html" class="participant-avatar" title="{{ participant.username }}">
+                                        {% if participant.avatar_url %}
+                                            <img src="{{ participant.avatar_url }}" alt="{{ participant.username }}">
+                                        {% else %}
+                                            <div class="avatar-placeholder" style="background: #{{ participant.username|avatar_color }}">{{ participant.username[0]|upper }}</div>
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </section>
+    </article>
+{% endblock %}

@@ -1,0 +1,93 @@
+{#
+  Reusable topics fragment. This file does not extend `base.html` so it
+  can be included by pages that want a topic table (category, tag, user).
+#}
+
+<h1>{{ category_title }}</h1>
+
+{% if subcategories %}
+    <table class="categories-list table-list">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Topics</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subcategory in subcategories %}
+            <tr style="--category-color: #{{ subcategory.color }};">
+                <td class="category">
+                    <h3>
+                        <a href="/c/{{ subcategory.id }}.html">
+                            <span class="fa-solid fa-square"></span>
+                            {{ subcategory.name }}
+                        </a>
+                    </h3>
+                    <p>{{ subcategory.description | safe }}</p>
+                </td>
+                <td class="item-count">{{ subcategory.topic_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+<table class="topic-list table-list">
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Author</th>
+            <th class="center">Replies</th>
+            <th class="center">Views</th>
+            <th class="center">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for topic in topics %}
+        <tr>
+            <td class="topic-title">
+                <a href="/t/{{ topic.id }}.html">
+                    {% if topic.has_solution %}
+                        <span class="fa-solid fa-square-check topic-solved-icon" title="This topic has a solution"></span>
+                    {% endif %}
+                    {{ topic.title }}
+                </a>
+                {% if topic.tags %}
+                <div class="topic-tags">
+                    {% for tag in topic.tags %}
+                        <a class="tag" href="/tags/{{ tag.slug }}.html">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </td>
+            <td class="topic-author">
+                <div class="topic-participants">
+                    {% if topic.participants %}
+                        {% for participant in topic.participants[:5] %}
+                            <a href="/u/{{ participant.username }}.html" class="participant-avatar" title="{{ participant.username }}">
+                                {% if participant.avatar_url %}
+                                    <img src="{{ participant.avatar_url }}" alt="{{ participant.username }}">
+                                {% else %}
+                                    <div class="avatar-placeholder" style="background: #{{ participant.username|avatar_color }}">{{ participant.username[0]|upper }}</div>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    {% elif users and users[topic.user_id] %}
+                        <a href="/u/{{ users[topic.user_id].username }}.html" class="participant-avatar" title="{{ users[topic.user_id].username }}">
+                            {% if users[topic.user_id].avatar_url %}
+                                <img src="{{ users[topic.user_id].avatar_url }}" alt="{{ users[topic.user_id].username }}">
+                            {% else %}
+                                <div class="avatar-placeholder" style="background: #{{ users[topic.user_id].username|avatar_color }}">{{ users[topic.user_id].username[0]|upper }}</div>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            <td class="topic-replies center {% if topic.reply_count > 10 %}orange{% endif %}">{{ topic.reply_count }}</td>
+            <td class="topic-views center {% if topic.views > 1000 %}orange{% endif %}">{{ topic.views }}</td>
+            <td class="topic-date relative-time-year center">{{ topic.last_posted_at or topic.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

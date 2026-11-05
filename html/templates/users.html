@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <div class="index-page">
+        {% set active_sidebar = "users" %}
+        {% include "_sidebar.html" %}
+        <div class="w-full">
+            <h1>Users</h1>
+            <table class="users-list table-list">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th class="center">Topics</th>
+                        <th class="center">Posts</th>
+                        <th class="center">Days Visited</th>
+                        <th class="center">Likes Given</th>
+                        <th class="center">Likes Received</th>
+                        <th class="center">Time Read</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td data-sort="{{ user.username|lower }}">
+                                <a href="/u/{{ user.username }}.html" class="directory-user">
+                                    <span class="participant-avatar" title="{{ user.username }}">
+                                        {% if user.avatar_url %}
+                                            <img src="{{ user.avatar_url }}" alt="{{ user.username }}">
+                                        {% else %}
+                                            <span class="avatar-placeholder" style="background: #{{ user.username|avatar_color }}">{{ user.username[0]|upper }}</span>
+                                        {% endif %}
+                                    </span>
+                                    <span>{{ user.username }}</span>
+                                </a>
+                            </td>
+                            <td class="center" data-sort="{{ user.topic_count or 0 }}">{{ user.topic_count | default(0) | number_format }}</td>
+                            <td class="center" data-sort="{{ user.post_count or 0 }}">{{ user.post_count | default(0) | number_format }}</td>
+                            <td class="center" data-sort="{{ user.days_visited or 0 }}">{{ user.days_visited | default(0) | number_format }}</td>
+                            <td class="center" data-sort="{{ user.likes_given or 0 }}">{{ user.likes_given | default(0) | number_format }}</td>
+                            <td class="center" data-sort="{{ user.likes_received or 0 }}">{{ user.likes_received | default(0) | number_format }}</td>
+                            <td class="center" data-sort="{{ user.time_read or 0 }}" title="{{ ((user.time_read or 0) // 60) | number_format }} minutes">{{ user.time_read | minutes_to_time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

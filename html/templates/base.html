@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Ubuntu MATE Community Archive</title>
+    <link rel="icon" type="image/png" href="https://ubuntu-mate.community/uploads/default/optimized/1X/e75ff172b5be659c48d264a448a3707f524f48f9_2_32x32.ico">
+    <link rel="apple-touch-icon" type="image/png" href="https://ubuntu-mate.community/uploads/default/optimized/2X/1/14ea399f69eb3d52e32df958dbc6b6ed0d691eea_2_180x180.png">
+    <meta name="theme-color" media="all" content="#87a556">
+    <link rel="canonical" href="https://ubuntu-mate.community/{% block canonical %}{% endblock %}">
+
+    <meta property="og:site_name" content="Ubuntu MATE Community">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://ubuntu-mate.community/uploads/default/original/2X/b/b6e5898171e425708770646c6a6af73d824309d4.png">
+    <meta property="og:image" content="https://ubuntu-mate.community/uploads/default/original/2X/b/b6e5898171e425708770646c6a6af73d824309d4.png">
+    <meta property="og:url" content="https://ubuntu-mate.community/">
+    <meta name="twitter:url" content="https://ubuntu-mate.community/">
+    <meta property="og:title" content="Ubuntu MATE Community">
+    <meta name="twitter:title" content="Ubuntu MATE Community">
+    <meta property="og:description" content="For a retrospective future">
+    <meta name="twitter:description" content="For a retrospective future">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/fa.min.css">
+</head>
+<body>
+    <div id="top-navbar">
+        <div class="container">
+            This community site is now archived. Discussions continue at <a id="new-place" href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+        </div>
+    </div>
+    <header class="site-header">
+        <div class="container">
+            <a id="site-root" href="/">
+                <img id="site-logo" src="/logo-white.svg" alt="Ubuntu MATE Mono Logo">
+            </a>
+        </div>
+    </header>
+
+    <div id="page-content" class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <script src="/js/base.js"></script>
+</body>
+</html>

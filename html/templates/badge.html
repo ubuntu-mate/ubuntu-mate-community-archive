@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block canonical %}badge/{{ badge.id }}{% endblock %}
+{% block title %}{{ badge.name }}{% endblock %}
+
+{% block content %}
+    <div class="index-page">
+        {% set active_sidebar = "badges" %}
+        {% include "_sidebar.html" %}
+        <div class="w-full">
+            <h1><a href="/badges">Badges</a> / {{ badge.name }}</h1>
+            <div class="badge-card badge-detail-card">
+                <div class="badge-icon {{ badge.badge_type_name|lower if badge.badge_type_name else 'bronze' }}">
+                    <span class="fa fa-{{ badge.icon | replace('far-', '') }}"></span>
+                </div>
+                <div class="badge-meta">
+                    <h1 class="badge-name">{{ badge.name }}</h1>
+                    <div class="badge-description">{{ badge.description or "No description available." }}</div>
+                    <div class="badge-stats">{{ badge.grant_count|number_format }} awarded</div>
+                </div>
+            </div>
+
+            <div class="badge-users-grid">
+                {% for grant in grants %}
+                    <a href="/u/{{ grant.user.username }}.html" class="badge-user">
+                        <span class="participant-avatar" title="{{ grant.user.username }}">
+                            {% if grant.user.avatar_url %}
+                                <img src="{{ grant.user.avatar_url }}" alt="{{ grant.user.username }}">
+                            {% else %}
+                                <span class="avatar-placeholder" style="background: #{{ grant.user.username|avatar_color }}">{{ grant.user.username[0]|upper }}</span>
+                            {% endif %}
+                        </span>
+                        <span class="badge-user-info">
+                            <span><strong>{{ grant.user.username }}</strong>{% if grant.user.name and grant.user.name != grant.user.username %} {{ grant.user.name }}{% endif %}</span>
+                            {% if grant.granted_at %}<small>Granted <time class="relative-time">{{ grant.granted_at }}</time></small>{% endif %}
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

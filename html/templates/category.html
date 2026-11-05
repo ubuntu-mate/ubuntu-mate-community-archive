@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block canonical %}c/{{ category.slug }}/{{ category.id }}{% endblock %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+    {% set category_title = category.name %}
+    {% set topics = topics %}
+    {% include "_topics.html" %}
+{% endblock %}

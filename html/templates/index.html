@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <div class="index-page">
+        {% set active_sidebar = "categories" %}
+        {% include "_sidebar.html" %}
+        <div>
+            <h1>Categories</h1>
+            <table class="categories-list table-list">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Topics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        {% if not category.parent_category_id %}
+                            <tr style="--category-color: #{{ category.color }};">
+                                <td class="category">
+                                    <h3>
+                                        <a href="/c/{{ category.id }}.html">
+                                            <span class="fa-solid fa-square"></span>
+                                            {{ category.name }}
+                                        </a>
+                                    </h3>
+                                    <p>{{ category.description | safe }}</p>
+                                </td>
+                                <td class="item-count">{{ category.topics | length }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

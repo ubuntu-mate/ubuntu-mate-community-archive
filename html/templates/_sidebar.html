@@ -1,0 +1,18 @@
+<nav class="sidebar">
+    <a href="/"{% if active_sidebar == "categories" %} class="selected"{% endif %}>
+        <span class="fa-solid fa-layer-group"></span>
+        Categories
+    </a>
+    <a href="/users"{% if active_sidebar == "users" %} class="selected"{% endif %}>
+        <span class="fa-solid fa-users"></span>
+        Users
+    </a>
+    <a href="/badges"{% if active_sidebar == "badges" %} class="selected"{% endif %}>
+        <span class="fa-solid fa-certificate"></span>
+        Badges
+    </a>
+    <a href="/tags.html"{% if active_sidebar == "tags" %} class="selected"{% endif %}>
+        <span class="fa-solid fa-tags"></span>
+        Tags
+    </a>
+</nav>

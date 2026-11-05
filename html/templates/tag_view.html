@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block canonical %}tags/{{ tag.slug }}{% endblock %}
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block content %}
+    {% set category_title = 'Tag: ' ~ tag.name %}
+    {% set topics = topics %}
+    {% include "_topics.html" %}
+{% endblock %}

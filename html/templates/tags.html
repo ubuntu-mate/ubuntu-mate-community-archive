@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+    <div class="index-page">
+        {% set active_sidebar = "tags" %}
+        {% include "_sidebar.html" %}
+        <div class="w-full">
+            <h1>Tags</h1>
+            {% for group_name, group_tags in tag_sections %}
+                <section class="tag-group">
+                    <h2>{{ group_name }}</h2>
+                    <ul class="tag-list">
+                        {% for tag in group_tags %}
+                            <li>
+                                <a href="/tags/{{ tag.slug }}.html" class="tag">{{ tag.name }}</a>
+                                <span class="count">x {{ tag.public_topic_count | number_format }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

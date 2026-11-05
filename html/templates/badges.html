@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Badges{% endblock %}
+
+{% block content %}
+    <div class="index-page">
+        {% set active_sidebar = "badges" %}
+        {% include "_sidebar.html" %}
+        <div class="w-full">
+            <div class="page-header">
+                <h1>Badges</h1>
+                <div class="stats">
+                    {{ badges|length }} total badges
+                    {% if total_grants %} • {{ total_grants|number_format }} total awarded{% endif %}
+                </div>
+            </div>
+
+            <div class="badge-groups">
+                {% for group_name, group_badges in badge_groups.items() %}
+                <div class="badge-group">
+                    <h3 class="badge-group-header">{{ group_name or "Other" }}</h3>
+
+                    <div class="badges-grid">
+                        {% for badge in group_badges %}
+                        <a href="/badge/{{ badge.id }}">
+                            <div class="badge-card">
+                                <div class="badge-icon {{ badge.badge_type_name|lower if badge.badge_type_name else 'bronze' }}">
+                                    <span class="fa fa-{{ badge.icon | replace('far-', 'eye') }}"></span>
+                                </div>
+                                <div class="badge-meta">
+                                    <h3 class="badge-name">{{ badge.name }}</h3>
+                                    <div class="badge-description">{{ badge.description or "No description available." }}</div>
+                                    <div class="badge-stats">
+                                        {{ badge.grant_count|number_format }} awarded
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

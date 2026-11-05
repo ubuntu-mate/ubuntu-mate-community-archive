@@ -349,11 +349,23 @@ class DiscourseExporter:
                 tag["created_at"] = tag["created_at"].isoformat()
             if tag["updated_at"]:
                 tag["updated_at"] = tag["updated_at"].isoformat()
+            tag["group_names"] = []
             tags.append(tag)
             tags_by_id[tag["id"]] = tag
 
+        cur.execute("""
+            SELECT m.tag_id, g.name
+            FROM tag_group_memberships m
+            JOIN tag_groups g ON g.id = m.tag_group_id
+            ORDER BY g.name
+        """)
+        for row in cur.fetchall():
+            tag = tags_by_id.get(row["tag_id"])
+            if tag:
+                tag["group_names"].append(row["name"])
+
         cur.close()
-        self._write_json("tags.json", tags)
+        self.tags = tags
 
     def _export_topics(self):
         """Export topics.json, including tags, participants and the solved post."""
@@ -428,6 +440,10 @@ class DiscourseExporter:
         cur.close()
         self.included_topic_ids = set(topics_by_id.keys())
         self._write_json("topics.json", topics)
+
+        # Tags with no exported topics get no JSON and therefore no HTML page
+        used_tag_ids = {tid for t in topics for tid in t["tag_ids"]}
+        self._write_json("tags.json", [t for t in self.tags if t["id"] in used_tag_ids])
 
     def _export_posts(self):
         """Export posts.json, including the users who liked each post."""
