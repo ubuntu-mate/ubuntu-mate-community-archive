@@ -89,3 +89,31 @@ document.querySelectorAll("script.poll-data").forEach(script => {
         el.append(info);
     });
 });
+
+// Show topic title and category in the site header once the page title scrolls out of view.
+(() => {
+    const title = document.querySelector("article.topic > h1");
+    const headerContainer = document.querySelector(".site-header > .container");
+    if (!title || !headerContainer)
+        return;
+
+    const box = document.createElement("div");
+    box.className = "header-topic";
+    const name = document.createElement("div");
+    name.className = "header-topic-title";
+    name.textContent = title.textContent;
+
+    box.appendChild(name);
+
+    const chip = document.querySelector("article.topic > .category-chip");
+    if (chip)
+        box.appendChild(chip.cloneNode(true));
+
+    headerContainer.appendChild(box);
+
+    const headerHeight = document.querySelector(".site-header").getBoundingClientRect().bottom;
+
+    new IntersectionObserver(([entry]) => {
+        box.classList.toggle("visible", !entry.isIntersecting);
+    }, { rootMargin: `-${Math.round(headerHeight)}px 0px 0px 0px` }).observe(title);
+})();

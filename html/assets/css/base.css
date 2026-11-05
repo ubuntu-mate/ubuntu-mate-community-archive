@@ -115,6 +115,7 @@ a:focus {
     text-decoration: underline;
 }
 
+/* Header */
 .site-header {
     background: var(--primary);
     position: fixed;
@@ -123,6 +124,47 @@ a:focus {
     right: 0;
     height: 4em;
     z-index: 10;
+}
+
+.site-header > .container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    height: 100%;
+}
+
+.header-topic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    margin-left: -0.5rem;
+}
+
+.header-topic.visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.header-topic-title {
+    font-weight: bold;
+    font-size: 1.25em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-topic .category-chip {
+    display: inline-flex;
+    margin: 0;
+    color: #fff;
+    font-size: 0.85em;
 }
 
 /* Content */
