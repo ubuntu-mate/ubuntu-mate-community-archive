@@ -549,7 +549,8 @@ def generate_category_pages(env, archive):
     for category in archive.categories.values():
         topics = sorted(category["topics"], key=lambda t: t.get("last_posted_at") or t.get("created_at"), reverse=True)
         subcategories = [c for c in archive.categories.values() if c.get("parent_category_id") == category["id"]]
-        html = env.get_template("category.html").render(category=category, topics=topics, users=archive.users, subcategories=subcategories)
+        parent_category = archive.categories.get(category.get("parent_category_id"))
+        html = env.get_template("category.html").render(category=category, parent_category=parent_category, topics=topics, users=archive.users, subcategories=subcategories)
         write_output(os.path.join("c", f"{category['id']}.html"), html)
 
 

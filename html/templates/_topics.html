@@ -5,6 +5,13 @@
 
 <h1>{{ category_title }}</h1>
 
+{% if parent_category %}
+    <a class="category-chip" href="/c/{{ parent_category.id }}.html" style="--category-color: #{{ parent_category.color }}">
+        <div class="square"></div>
+        <span class="category-name">{{ parent_category.name }}</span>
+    </a>
+{% endif %}
+
 {% if subcategories %}
     <table class="categories-list table-list">
         <thead>
