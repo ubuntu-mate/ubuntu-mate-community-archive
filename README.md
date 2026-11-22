@@ -19,7 +19,7 @@ Then run:
 
     python scripts/05_export_html.py
 
-Routes and redirects are handled by Cloudflare R2 workers.
+Routes and redirects are handled by a Cloudflare Worker.
 
 
 ## License
