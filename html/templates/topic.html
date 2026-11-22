@@ -7,7 +7,7 @@
     <article class="topic">
         <h1>{{ topic.title }}</h1>
         {% if topic.category_id and topic.category_id in categories %}
-        <a class="category-chip" href="/c/{{ topic.category_id }}.html" style="--category-color: #{{ categories[topic.category_id].color }}">
+        <a class="category-chip" href="/c/{{ topic.category_id }}" style="--category-color: #{{ categories[topic.category_id].color }}">
             <div class="square"></div>
             <span class="category-name">{{ categories[topic.category_id].name }}</span>
         </a>
@@ -19,7 +19,7 @@
             {% if _user and post.is_action %}
             <div class="post-action" id="post-{{ post.id }}">
                 <span class="fa fa-{{ post.action_icon }}"></span>
-                <a href="/u/{{ _user.username }}.html" title="{{ _user.username }}">
+                <a href="/u/{{ _user.username }}" title="{{ _user.username }}">
                     {% if _user.avatar_url %}
                         <img src="{{ _user.avatar_url }}" alt="{{ _user.username }}"/>
                     {% else %}
@@ -31,7 +31,7 @@
             {% elif _user %}
             <div class="post{% if post.id == solved_post_id %} post-solved{% endif %}" id="post-{{ post.id }}">
                 <div class="post-avatar">
-                    <a href="/u/{{ _user.username }}.html">
+                    <a href="/u/{{ _user.username }}">
                         {% if _user.avatar_url %}
                             <img src="{{ _user.avatar_url }}" alt="{{ _user.username }}"/>
                         {% else %}
@@ -87,7 +87,7 @@
                                 </summary>
                                 <div class="post-likes-list">
                                 {% for user in post.likes %}
-                                    <a href="/u/{{ user.username }}.html" title="{{ user.username }}">
+                                    <a href="/u/{{ user.username }}" title="{{ user.username }}">
                                         {% if user.avatar_url %}
                                             <img src="{{ user.avatar_url }}" alt="{{ user.username }}"/>
                                         {% else %}
@@ -110,7 +110,7 @@
                         {% if topic_participants %}
                             <div class="topic-summary-contributors">
                                 {% for participant in topic_participants %}
-                                    <a href="/u/{{ participant.username }}.html" class="participant-avatar" title="{{ participant.username }}">
+                                    <a href="/u/{{ participant.username }}" class="participant-avatar" title="{{ participant.username }}">
                                         {% if participant.avatar_url %}
                                             <img src="{{ participant.avatar_url }}" alt="{{ participant.username }}">
                                         {% else %}

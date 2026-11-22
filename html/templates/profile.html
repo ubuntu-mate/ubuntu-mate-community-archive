@@ -138,7 +138,7 @@
                                     <span>❤ {{ reply.like_count | default(0) }}</span>
                                 </div>
                                 {% if parent %}
-                                    <a href="/t/{{ reply.topic_id }}.html#post-{{ reply.id }}">{{ parent.title }}</a>
+                                    <a href="/t/{{ reply.topic_id }}#post-{{ reply.id }}">{{ parent.title }}</a>
                                 {% else %}
                                     Reply in topic #{{ reply.topic_id }}
                                 {% endif %}
@@ -158,7 +158,7 @@
                                     <time class="relative-time-year">{{ topic.created_at }}</time>
                                     <span>👁 {{ topic.views | default(0) | compact_number }}</span>
                                 </div>
-                                <a href="/t/{{ topic.id }}.html">{{ topic.title }}</a>
+                                <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
                             </li>
                         {% else %}
                             <li class="profile-empty">No top topics.</li>
@@ -173,7 +173,7 @@
                         {% for item in most_replied_to %}
                             {% set u = item.user %}
                             <li>
-                                <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                <a href="/u/{{ u.username }}" class="profile-user-item">
                                     {% if u.avatar_url %}
                                         <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                     {% else %}
@@ -195,7 +195,7 @@
                         {% for item in most_liked_by %}
                             {% set u = item.user %}
                             <li>
-                                <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                <a href="/u/{{ u.username }}" class="profile-user-item">
                                     {% if u.avatar_url %}
                                         <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                     {% else %}
@@ -219,7 +219,7 @@
                             {% for item in most_liked %}
                                 {% set u = item.user %}
                                 <li>
-                                    <a href="/u/{{ u.username }}.html" class="profile-user-item">
+                                    <a href="/u/{{ u.username }}" class="profile-user-item">
                                         {% if u.avatar_url %}
                                             <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                         {% else %}
@@ -242,7 +242,7 @@
                             {% for item in top_categories %}
                                 {% set cat = item.category %}
                                 <li>
-                                    <a href="/c/{{ cat.id }}.html" class="profile-user-item category-name-badge" style="border-left-color: #{{ cat.color or '888888' }}">{{ cat.name }}</a>
+                                    <a href="/c/{{ cat.id }}" class="profile-user-item category-name-badge" style="border-left-color: #{{ cat.color or '888888' }}">{{ cat.name }}</a>
                                     <span class="profile-user-count">{{ item.topics if item.topics else '–' }} topics · {{ item.replies }} replies</span>
                                 </li>
                             {% endfor %}
@@ -298,7 +298,7 @@
                 <ul class="profile-list">
                     {% for topic in recent_topics %}
                         <li>
-                            <a href="/t/{{ topic.id }}.html">{{ topic.title }}</a>
+                            <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
                             <small><time class="relative-time-year">{{ topic.last_posted_at or topic.created_at }}</time></small>
                         </li>
                     {% else %}
@@ -313,7 +313,7 @@
                         {% set parent = topics.get(reply.topic_id) %}
                         <li>
                             {% if parent %}
-                                <a href="/t/{{ reply.topic_id }}.html#post-{{ reply.id }}">{{ parent.title }}</a>
+                                <a href="/t/{{ reply.topic_id }}#post-{{ reply.id }}">{{ parent.title }}</a>
                             {% else %}
                                 Reply in topic #{{ reply.topic_id }}
                             {% endif %}
@@ -331,7 +331,7 @@
                         {% set parent = topics.get(liked_post.topic_id) %}
                         <li>
                             {% if parent %}
-                                <a href="/t/{{ liked_post.topic_id }}.html#post-{{ liked_post.id }}">{{ parent.title }}</a>
+                                <a href="/t/{{ liked_post.topic_id }}#post-{{ liked_post.id }}">{{ parent.title }}</a>
                             {% else %}
                                 Post #{{ liked_post.id }}
                             {% endif %}
@@ -349,7 +349,7 @@
                         {% set parent = topics.get(solved_post.topic_id) %}
                         <li>
                             {% if parent %}
-                                <a href="/t/{{ solved_post.topic_id }}.html#post-{{ solved_post.id }}">{{ parent.title }}</a>
+                                <a href="/t/{{ solved_post.topic_id }}#post-{{ solved_post.id }}">{{ parent.title }}</a>
                             {% else %}
                                 Solved post #{{ solved_post.id }}
                             {% endif %}

@@ -6,7 +6,7 @@
 <h1>{{ category_title }}</h1>
 
 {% if parent_category %}
-    <a class="category-chip" href="/c/{{ parent_category.id }}.html" style="--category-color: #{{ parent_category.color }}">
+    <a class="category-chip" href="/c/{{ parent_category.id }}" style="--category-color: #{{ parent_category.color }}">
         <div class="square"></div>
         <span class="category-name">{{ parent_category.name }}</span>
     </a>
@@ -25,7 +25,7 @@
             <tr style="--category-color: #{{ subcategory.color }};">
                 <td class="category">
                     <h3>
-                        <a href="/c/{{ subcategory.id }}.html">
+                        <a href="/c/{{ subcategory.id }}">
                             <span class="fa-solid fa-square"></span>
                             {{ subcategory.name }}
                         </a>
@@ -54,7 +54,7 @@
         {% for topic in topics %}
         <tr>
             <td class="topic-title">
-                <a href="/t/{{ topic.id }}.html">
+                <a href="/t/{{ topic.id }}">
                     {% if topic.has_solution %}
                         <span class="fa-solid fa-square-check topic-solved-icon" title="This topic has a solution"></span>
                     {% endif %}
@@ -63,7 +63,7 @@
                 {% if topic.tags %}
                 <div class="topic-tags">
                     {% for tag in topic.tags %}
-                        <a class="tag" href="/tags/{{ tag.slug }}.html">{{ tag.name }}</a>
+                        <a class="tag" href="/tags/{{ tag.slug }}">{{ tag.name }}</a>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -72,7 +72,7 @@
                 <div class="topic-participants">
                     {% if topic.participants %}
                         {% for participant in topic.participants[:5] %}
-                            <a href="/u/{{ participant.username }}.html" class="participant-avatar" title="{{ participant.username }}">
+                            <a href="/u/{{ participant.username }}" class="participant-avatar" title="{{ participant.username }}">
                                 {% if participant.avatar_url %}
                                     <img src="{{ participant.avatar_url }}" alt="{{ participant.username }}">
                                 {% else %}
@@ -81,7 +81,7 @@
                             </a>
                         {% endfor %}
                     {% elif users and users[topic.user_id] %}
-                        <a href="/u/{{ users[topic.user_id].username }}.html" class="participant-avatar" title="{{ users[topic.user_id].username }}">
+                        <a href="/u/{{ users[topic.user_id].username }}" class="participant-avatar" title="{{ users[topic.user_id].username }}">
                             {% if users[topic.user_id].avatar_url %}
                                 <img src="{{ users[topic.user_id].avatar_url }}" alt="{{ users[topic.user_id].username }}">
                             {% else %}
