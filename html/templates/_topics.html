@@ -72,7 +72,7 @@
                 <div class="topic-participants">
                     {% if topic.participants %}
                         {% for participant in topic.participants[:5] %}
-                            <a href="/u/{{ participant.username }}" class="participant-avatar" title="{{ participant.username }}">
+                            <a href="/u/{{ participant.username_lower }}" class="participant-avatar" title="{{ participant.username }}">
                                 {% if participant.avatar_url %}
                                     <img src="{{ participant.avatar_url }}" alt="{{ participant.username }}">
                                 {% else %}
@@ -81,7 +81,7 @@
                             </a>
                         {% endfor %}
                     {% elif users and users[topic.user_id] %}
-                        <a href="/u/{{ users[topic.user_id].username }}" class="participant-avatar" title="{{ users[topic.user_id].username }}">
+                        <a href="/u/{{ users[topic.user_id].username_lower }}" class="participant-avatar" title="{{ users[topic.user_id].username }}">
                             {% if users[topic.user_id].avatar_url %}
                                 <img src="{{ users[topic.user_id].avatar_url }}" alt="{{ users[topic.user_id].username }}">
                             {% else %}

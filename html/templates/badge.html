@@ -22,7 +22,7 @@
 
             <div class="badge-users-grid">
                 {% for grant in grants %}
-                    <a href="/u/{{ grant.user.username }}" class="badge-user">
+                    <a href="/u/{{ grant.user.username_lower }}" class="badge-user">
                         <span class="participant-avatar" title="{{ grant.user.username }}">
                             {% if grant.user.avatar_url %}
                                 <img src="{{ grant.user.avatar_url }}" alt="{{ grant.user.username }}">

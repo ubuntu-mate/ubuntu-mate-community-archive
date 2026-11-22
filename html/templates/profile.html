@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ user.username }} - Profile{% endblock %}
-{% block canonical %}u/{{ user.username }}{% endblock %}
+{% block canonical %}u/{{ user.username_lower }}{% endblock %}
 
 {% block content %}
     {% set cover_photo = user.profile_background_url or user.card_background_url %}
@@ -173,7 +173,7 @@
                         {% for item in most_replied_to %}
                             {% set u = item.user %}
                             <li>
-                                <a href="/u/{{ u.username }}" class="profile-user-item">
+                                <a href="/u/{{ u.username_lower }}" class="profile-user-item">
                                     {% if u.avatar_url %}
                                         <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                     {% else %}
@@ -195,7 +195,7 @@
                         {% for item in most_liked_by %}
                             {% set u = item.user %}
                             <li>
-                                <a href="/u/{{ u.username }}" class="profile-user-item">
+                                <a href="/u/{{ u.username_lower }}" class="profile-user-item">
                                     {% if u.avatar_url %}
                                         <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                     {% else %}
@@ -219,7 +219,7 @@
                             {% for item in most_liked %}
                                 {% set u = item.user %}
                                 <li>
-                                    <a href="/u/{{ u.username }}" class="profile-user-item">
+                                    <a href="/u/{{ u.username_lower }}" class="profile-user-item">
                                         {% if u.avatar_url %}
                                             <img class="mini-avatar" src="{{ u.avatar_url }}" alt="{{ u.username }}">
                                         {% else %}

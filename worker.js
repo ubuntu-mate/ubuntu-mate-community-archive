@@ -64,6 +64,8 @@ export default {
     // Work out the R2 key
     const isIndex = path === "/" || path === "/index.html";
     let key = isIndex ? "index.html" : decodeURIComponent(path.slice(1));
+    if (/^u\/[^/]+$/.test(key))
+      key = key.toLowerCase();
     const tryHtml = !isIndex && key.split("/").pop().includes(".");
     if (!isIndex && !tryHtml)
       key += ".html";

@@ -512,7 +512,7 @@ def generate_user_pages(env, archive):
             user_badges=user_badges,
             topics=archive.topics,
         )
-        write_output(os.path.join("u", f"{user['username']}.html"), html)
+        write_output(os.path.join("u", f"{user['username_lower']}.html"), html)
 
 
 def generate_users_directory_page(env, archive):

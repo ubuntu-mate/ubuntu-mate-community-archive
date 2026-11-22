@@ -24,7 +24,7 @@
                     {% for user in users %}
                         <tr>
                             <td data-sort="{{ user.username|lower }}">
-                                <a href="/u/{{ user.username }}" class="directory-user">
+                                <a href="/u/{{ user.username_lower }}" class="directory-user">
                                     <span class="participant-avatar" title="{{ user.username }}">
                                         {% if user.avatar_url %}
                                             <img src="{{ user.avatar_url }}" alt="{{ user.username }}">
