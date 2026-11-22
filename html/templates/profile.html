@@ -24,8 +24,8 @@
             <div class="profile-identity">
                 <h1 class="profile-username">
                     {{ user.username }}
-                    {% if user.admin %}<i class="fa-solid fa-shield-halved" title="Admin"></i>
-                    {% elif user.moderator %}<i class="fa-solid fa-shield" title="Moderator"></i>
+                    {% if user.admin or user.moderator %}
+                    <i class="fa-solid fa-shield-halved" title="{% if user.admin %}Admin{% elif user.moderator %}Moderator{% endif %}"></i>
                     {% endif %}
                 </h1>
                 {% if user.name %}<div class="profile-name">{{ user.name }}</div>{% endif %}
