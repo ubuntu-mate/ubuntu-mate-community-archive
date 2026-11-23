@@ -1560,3 +1560,66 @@ article.topic {
     display: block;
     font-size: 2em;
 }
+
+/* Mobile */
+@media (max-width: 700px) {
+    #top-navbar > .container {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        height: 32px;
+        max-width: 100%;
+    }
+
+    /* Index */
+    .index-page {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        border-right: none;
+        padding: 0;
+        position: static;
+        width: unset;
+        align-self: unset;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+    }
+
+    /* Tables */
+    .topic-list {
+        thead,
+        .topic-replies,
+        .topic-author,
+        .topic-views {
+            display: none;
+        }
+
+        tbody tr {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            width: 100%;
+        }
+
+        .topic-date {
+            text-align: right;
+        }
+
+        td {
+            padding: 0.25rem 0;
+        }
+    }
+
+    /* Posts */
+    .topic img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* User Profile */
+    .profile-grid-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
